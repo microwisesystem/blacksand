@@ -1,0 +1,15 @@
+<h3>原型</h3>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td>名称</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @prototypes.each do |p| %>
+      <tr>
+        <td><%= link_to p.name, [:dashboard, p] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

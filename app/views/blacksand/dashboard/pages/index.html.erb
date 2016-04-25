@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-3">
+    <div id="manage_menu"></div>
+  </div>
+  <div class="col-md-9">
+    <div id="manage_list">
+    </div>
+  </div>
+
+</div>
+
+<% content_for :javascript do %>
+    <script>
+      // 排序
+      dragula([$('#modal-list')[0]]).on('drop', function(){
+        console.log('排序');
+
+        var newOrders = $('#modal-list').children().map(function(){
+              return $(this).data('id')
+            })
+            .get();
+
+        var update_url = $('#modal-list').data('update-url');
+        $.post(update_url, {page: newOrders})
+      });
+    </script>
+<% end %>

@@ -1,0 +1,12 @@
+$('#page_form').html('<%= j render partial: 'form', locals: { url: url_for_page(@page) } %>');
+
+KindEditor.create(
+  'textarea[class="rich_text"]',
+    {
+      width: "100%",
+      height: 300,
+      allowFileManager: true,
+      uploadJson: '/kindeditor/upload',
+      fileManagerJson: '/kindeditor/filemanager'
+    }
+);

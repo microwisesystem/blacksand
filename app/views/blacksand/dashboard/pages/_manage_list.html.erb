@@ -1,0 +1,60 @@
+    <%= link_to new_dashboard_page_path(parent_id: @parent_id), class: "btn btn-primary" do %>
+      <i class="glyphicon glyphicon-plus"></i> 新增页面
+    <% end %>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-align-justify"></i> 排序</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>标题</th>
+          <th>标识</th>
+          <th>模版</th>
+          <th>原型</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pages.each_with_index do |page, index| %>
+        <tr>
+          <th scope="row"><%= index+1 %></th>
+          <td><%= page.title %>  </td>
+          <td><%= page.en_name %></td>
+          <td><%= page.template.try :name %></td>
+          <td><%= page.prototype.try(:name) %></td>
+          <td>
+            <%= link_to '编辑', edit_dashboard_page_path(page) %> |
+            <%= link_to '删除', dashboard_page_path(page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
+            <a href="<%= page_path(page) %>" target="_blank">
+              <i class="glyphicon glyphicon-share"></i>预览
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div id="paginator">
+      <%= paginate @pages, :remote => true %>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">排序</h4>
+          </div>
+          <div class="modal-body">
+            <p class="help-block">拖动排序</p>
+            <ul id="modal-list" data-update-url="<%= sort_dashboard_pages_path %>">
+              <% @all_children.each do |p| %>
+                <li data-id="<%= p.id %>"><%= p.title %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>

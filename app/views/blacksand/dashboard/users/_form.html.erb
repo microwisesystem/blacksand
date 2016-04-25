@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-4">
+    <%= form_for(@user, url: dashboard_users_path) do |f| %>
+        <% if @user.errors.any? %>
+            <div id="error_explanation" class="red">
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :role %>
+          <%= f.select :role, User.role_types.map(&:reverse), {}, class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit '保存', class: 'btn btn-primary' %>
+          <%= link_to '取消', dashboard_users_path, class: 'btn btn-link' %>
+        </div>
+    <% end %>
+  </div>
+</div>

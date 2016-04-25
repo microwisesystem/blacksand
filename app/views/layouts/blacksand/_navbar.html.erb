@@ -1,0 +1,42 @@
+<nav id="navbar" class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= Blacksand.root_path %>">后台管理 - <%= Blacksand.site_name %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="<%= dashboard_pages_path %>">页面</a></li>
+        <li><a href="<%= dashboard_navigations_path %>">导航</a></li>
+        <li><a href="<%= dashboard_templates_path %>">模板</a></li>
+        <li><a href="<%= dashboard_prototypes_path %>">原型</a></li>
+        <% if false && can?(:create, User) %>
+          <li><a href="<%= dashboard_users_path %>">用户</a></li>
+        <% end %>
+        <li><a href="<%= Blacksand.root_path %>">回首页<span class="sr-only">(current)</span></a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if false && user_signed_in? %>
+            <li>
+              <span class="navbar-text text-muted"><%= current_user.email%>已登录</span>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="glyphicon glyphicon-log-out"></i>
+                  退出
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

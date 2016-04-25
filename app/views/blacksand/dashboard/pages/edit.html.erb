@@ -1,0 +1,19 @@
+<div id="page_form">
+	<%= render 'form' %>
+</div>
+<script type="text/javascript">
+var onchange_render = function(prototype_id) {
+	if(window.confirm('更换原型将删除这个页面下的所有信息，确定要更换原型吗？')){
+		$.ajax({
+			url: "/dashboard/pages/" + <%= @page.id %> + "/onchange_edit/?prototype_id="+prototype_id
+		})
+	} else {
+		$.ajax({
+			url: "get_prototype_id",
+			dataType: "json"
+		}).done(function(prototype_id) {
+			$('#page_prototype_id').val(prototype_id)
+		})
+	}
+}
+</script>

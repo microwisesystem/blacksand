@@ -1,0 +1,56 @@
+<% case f.object.field.field_type %>
+  <% when 'image' then %>
+    <%= f.file_field :image, filed_options(f) %>
+    <%= f.form_group do %>
+      <div class="row">
+        <% if f.object.image? %>
+          <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+              <%= image_tag f.object.image_url %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% when 'slide' then %>
+      <%= f.hidden_field :type %>
+      <%= f.file_field :image, filed_options(f) %>
+      <%= f.form_group do %>
+          <div class="row">
+            <% if f.object.image? %>
+                <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail">
+                    <%= image_tag f.object.image_url %>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+  <% when 'gallery' then %>
+    <%= f.file_field :gallery, filed_options(f).merge(help: '图片显示顺序取决于上传文件名顺序') %>
+    <%= f.form_group do %>
+      <div class="row">
+        <% if f.object.gallery? %>
+          <% f.object.gallery.each do |image| %>
+            <div class="col-xs-6 col-md-3">
+              <div class="thumbnail">
+                <%= image_tag image.url %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% when 'rich_text' then %>
+    <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
+      <%= f.kindeditor :value, class: "rich_text" %>
+      <br />
+      <%= f.errors_on :value %>
+    <% end %>
+  <% when 'textarea' then %>
+    <%= f.text_area :value, filed_options(f) %>
+  <% when 'select' then %>
+      <%= f.select :value, f.object.field.options.map{|e| [e, e]}, filed_options(f) %>
+  <% else %>
+    <%= f.text_field :value, filed_options(f) %>
+<% end %>

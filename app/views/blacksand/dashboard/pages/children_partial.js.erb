@@ -1,0 +1,14 @@
+$('#manage_list').html('<%= j render('manage_list') %>');
+
+// 排序
+dragula([$('#modal-list')[0]]).on('drop', function(){
+  console.log('排序');
+
+  var newOrders = $('#modal-list').children().map(function(){
+        return $(this).data('id')
+      })
+      .get();
+
+  var update_url = $('#modal-list').data('update-url');
+  $.post(update_url, {page: newOrders})
+});

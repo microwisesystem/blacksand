@@ -1,0 +1,14 @@
+zh-CN:
+  admin:
+    actions:
+      nestable:
+        title: "%{model_label}排序"
+        menu: "排序"
+        breadcrumb: "排序"
+        link: "排序"
+        bulk_link: "排序选取的%{model_label_plural}"
+        done: "完成"
+        success: "排序成功"
+        error: "错误"
+        update: "更新"
+        live_update: "实时更新"

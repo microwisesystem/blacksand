@@ -1,0 +1,20 @@
+<ol class="breadcrumb" style="background-color: white;">
+  <li><a href="<%= dashboard_pages_path %>">页面列表</a></li>
+  <li class="active">新增页面</li>
+</ol>
+
+<div id="page_form">
+	<%= render 'form',  url: dashboard_pages_path %>
+</div>
+<script type="text/javascript">
+  // TODO: using url helper method
+var onchange_render = function(prototype_id) {
+		$.ajax({
+      <% if params["parent_id"].present?  %>
+			url: "/dashboard/pages/onchange_new/?prototype_id="+prototype_id+"&parent_id="+<%= params["parent_id"] %>
+      <% else %>
+      url: "/dashboard/pages/onchange_new/?prototype_id="+prototype_id
+      <% end %>
+		})
+}
+</script>

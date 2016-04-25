@@ -1,0 +1,37 @@
+<h2>用户列表</h2>
+
+<%= link_to '添加用户', new_dashboard_user_path, class: 'btn btn-default' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>顺序</th>
+      <th>邮箱</th>
+      <th>验证</th>
+      <th>角色</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each_with_index do |user, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= user.email %></td>
+        <td><%= user.confirmed_at.present? ? '已验证' : '未验证' %></td>
+        <td><%= user.role.text %></td>
+        <td>
+          <% if can? :edit, user %>
+            <%= link_to '编辑', edit_dashboard_user_path(user), class: 'btn btn-default btn-sm' if can? :edit, user %>
+          <% else %>
+            自己
+          <% end %>
+          <% if user.confirmed_at.blank? %>
+            <%= link_to '删除', dashboard_user_path(user), method: :delete, data: { confirm: '确定删除?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

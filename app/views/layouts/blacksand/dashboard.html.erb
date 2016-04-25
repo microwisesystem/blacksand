@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= display_meta_tags site: Blacksand.site_name, reverse: true %>
+  <%= csrf_meta_tags %>
+  <%= content_for :head if content_for? :head  %>
+
+  <%= stylesheet_link_tag 'blacksand/dashboard', media: 'all' %>
+
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag 'blacksand/ie' %>
+  <![endif]-->
+
+  <%= Gon::Base.render_data %>
+</head>
+<body id="<%= "#{controller_name}-#{action_name}" %>"
+      data-controller="<%= controller_name %>"
+      data-action="<%= action_name %>">
+<%= javascript_include_tag 'blacksand/dashboard' %>
+<%= render 'layouts/blacksand/navbar' %>
+
+<div class="container">
+
+  <%= yield %>
+
+</div>
+
+<%= content_for :javascript if content_for? :javascript  %>
+</body>
+</html>

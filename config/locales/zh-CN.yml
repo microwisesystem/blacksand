@@ -1,0 +1,66 @@
+zh-CN:
+  activerecord:
+    models:
+      user: 用户
+      blacksand/template: 模板
+      blacksand/prototype: 原型
+      blacksand/field: 字段
+      blacksand/page: 页面
+      blacksand/property: 属性
+      blacksand/navigation: 导航
+    attributes:
+      user:
+        email: "邮箱"
+        current_password: "当前密码"
+        username: "用户名"
+        password: "密码"
+        password_confirmation: "密码确认"
+        remember_me: "记住我"
+        role: 角色
+        page: 负责板块
+      blacksand/template:
+        name: 名称
+        path: 路径
+      blacksand/prototype:
+        name: 名称
+      blacksand/field:
+        description: 描述
+        name: 字段名(英文)
+        field_type: 类型
+        prototype: 原型
+      blacksand/page:
+        title: 标题
+        en_name: 英文名
+        content: 内容
+        parent: 父页面
+        template: 模板
+        prototype: 原型
+        position: 位置
+        parent_id: 父页面
+        template_id: 模板
+        prototype_id: 原型
+      blacksand/navigation:
+        name: 名称
+        url: 地址
+        page: 页面
+        page_id: 页面
+        position: 位置
+      blacksand/property:
+        value: 值
+        page: 页面
+        field: 字段
+  enumerize:
+    field:
+      field_type:
+        string: 字符串
+        number: 数字
+        date: 日期
+        textarea: 文本域
+        rich_text: 富文本
+        image: 图片
+        gallery: 相册
+    user:
+      role:
+        admin: 高级管理员
+        manager: 管理员
+        editor: 编辑

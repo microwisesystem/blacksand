@@ -1,0 +1,31 @@
+<h4><%= @prototype.name %></h4>
+
+<h5>字段</h5>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td>描述</td>
+    <td>名称</td>
+    <td>类型</td>
+    <th>选项</th>
+    <th>必填</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @prototype.fields.each do |field| %>
+    <tr>
+      <td>
+        <%= field.description %>
+      </td>
+      <td>
+        <%= field.name %>
+      </td>
+      <td>
+        <%= field.field_type %>
+      </td>
+      <td><%= field.options %></td>
+      <td><%= field.required ? '必填' : '可选' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

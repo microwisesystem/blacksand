@@ -1,0 +1,17 @@
+<h3>模板</h3>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td>名称</td>
+    <td>路径</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @templates.each do |t| %>
+    <tr>
+      <td><%= t.name %></td>
+      <td><%= t.path %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

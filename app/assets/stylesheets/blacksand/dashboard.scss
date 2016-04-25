@@ -1,0 +1,25 @@
+// bootstrap
+$grid-gutter-width: 30px !default;
+$container-large-desktop: (940px + $grid-gutter-width) !default;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "util.css/util";
+
+@import "bootstrap-datepicker3";
+@import "dragula/dragula";
+@import "multiselect";
+
+#navbar {
+  border-radius: 0;
+}
+
+label.required:before {
+  content:"* ";
+  color: red;
+}
+
+#modal-list li:hover {
+  cursor: move;
+}

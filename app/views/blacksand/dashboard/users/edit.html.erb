@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-4">
+
+    <h2>编辑用户</h2>
+
+    <%= form_for(@user, url: dashboard_user_path(@user)) do |f| %>
+        <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <p class="form-static-control"><%= @user.email %></p>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :role %>
+          <%= f.select :role, User.role_types.map(&:reverse), {}, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :page %>
+          <%= select_tag 'user[page_ids][]', options_for_select(Page.where(parent: nil).map{|p| [p.title, p.id]}, @user.page_ids), {multiple: true} %>
+        </div>
+
+        <%= f.submit '保存', class: 'btn btn-primary' %>
+        <%= link_to '取消', dashboard_users_path, class: 'btn btn-link' %>
+    <% end %>
+
+  </div>
+</div>
+
+<% content_for(:javascript) do %>
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        $('#user_page_ids_').multiSelect({selectableHeader: '待选择', selectionHeader: '已选择'});
+      })
+    </script>
+<% end %>
