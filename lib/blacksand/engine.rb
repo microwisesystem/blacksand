@@ -12,6 +12,7 @@ require 'nested_form'
 require 'bootstrap-datepicker-rails'
 require 'font-awesome-rails'
 require 'enumerize'
+require 'ransack'
 
 require 'rails-assets-util.css'
 require 'rails-assets-html5shiv'

@@ -11,6 +11,7 @@ Blacksand::Engine.routes.draw do
         post 'sort'
 
         get 'children_partial'
+        get 'search'
       end
 
       member do

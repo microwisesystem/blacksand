@@ -4,7 +4,11 @@
     <%= f.text_field :url %>
     <%= f.text_field :position %>
 
-    <%= f.collection_select :page_id, Blacksand::Page.all, :id, :title, include_blank: true %>
+    <% if @navigation.page_id %>
+        <%= f.select :page_id, [[@navigation.page.title, @navigation.page_id]] %>
+    <% else %>
+        <%= f.select :page_id, [] %>
+    <% end %>
 
     <%= f.form_group do %>
         <%= f.primary %>

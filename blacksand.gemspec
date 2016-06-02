@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails_kindeditor'
   s.add_dependency 'themes_on_rails'
   s.add_dependency 'enumerize'
+  s.add_dependency 'ransack'
 
 
   s.add_dependency 'rails-assets-util.css'

@@ -10,6 +10,7 @@ $container-large-desktop: (940px + $grid-gutter-width) !default;
 @import "bootstrap-datepicker3";
 @import "dragula/dragula";
 @import "multiselect";
+@import "select2";
 
 #navbar {
   border-radius: 0;

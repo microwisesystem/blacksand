@@ -31,6 +31,11 @@ module Blacksand
       Page.selectNode(gon.pages, @parent_id.to_i)
     end
 
+    def search
+      @q = Page.ransack(params[:q])
+      @pages = @q.result.page(params[:page])
+    end
+
     def children_partial
       @page = Page.where(id: params[:parent_id]).first
       @parent_id = params[:parent_id]
