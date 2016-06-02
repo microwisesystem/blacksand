@@ -104,7 +104,7 @@ module Blacksand
 
       respond_to do |format|
         if @page.save
-          format.html { redirect_to dashboard_pages_url(parent_id: @page.parent_id), notice: '页面创建成功.' }
+          format.html { redirect_to pages_url(parent_id: @page.parent_id), notice: '页面创建成功.' }
           format.json { render :show, status: :created, location: @page }
         else
           puts @page.errors.full_messages
@@ -117,7 +117,7 @@ module Blacksand
     def update
       respond_to do |format|
         if @page.update(page_params)
-          format.html { redirect_to dashboard_pages_url(parent_id: @page.parent_id), notice: '页面更新成功.' }
+          format.html { redirect_to pages_url(parent_id: @page.parent_id), notice: '页面更新成功.' }
           format.json { render :show, status: :ok, location: @page }
         else
           format.html { render :edit }
@@ -129,7 +129,7 @@ module Blacksand
     def destroy
       @page.destroy
       respond_to do |format|
-        format.html { redirect_to dashboard_pages_url(parent_id: @page.parent_id), notice: '成功删除.' }
+        format.html { redirect_to pages_url(parent_id: @page.parent_id), notice: '成功删除.' }
         format.json { head :no_content }
       end
     end

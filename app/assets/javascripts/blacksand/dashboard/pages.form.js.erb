@@ -1,0 +1,32 @@
+$(function(){
+	if($('#pages-new, #pages-edit').length <= 0){
+		return;
+	}
+
+	$('#page_parent_id').select2({
+		language: 'zh-CN',
+		ajax: {
+			url: '<%= Blacksand::Engine.routes.url_helpers.search_pages_path(format: :json) %>',
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+					'q[title_cont]': params.term, // search term
+					page: params.page
+				};
+			},
+			processResults: function (data, params) {
+				params.page = params.page || 1;
+
+				return {
+					results: data.pages,
+					pagination: {
+						more: params.page < data.total_pages
+					}
+				};
+			},
+			cache: false
+		},
+		minimumInputLength: 1
+	});
+});
