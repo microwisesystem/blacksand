@@ -3,6 +3,7 @@ require 'carrierwave'
 require 'rails_kindeditor'
 require 'mini_magick'
 require 'kaminari'
+require 'bootstrap-kaminari-views'
 require 'gon'
 require 'meta-tags'
 require 'bootstrap-sass'
@@ -20,9 +21,16 @@ require 'rails-assets-headroom.js'
 require 'rails-assets-dragula'
 require 'rails-assets-bootstrap-treeview'
 require 'rails-assets-multiselect'
+require 'rails-assets-select2'
+require 'blacksand/routing'
 
 module Blacksand
+  def self.table_name_prefix
+  end
+
   class Engine < ::Rails::Engine
+    isolate_namespace Blacksand
+
     initializer "blacksand.precompile", group: :all do |app|
 
       # USING: rake blacksand_engine:install:migrations

@@ -7,10 +7,19 @@
 
 ### 安装
 
+Gemfile
+
     gem 'blacksand', git: 'git@gitlab.com/microwise/blacksand.git'
+
+执行
 
     rails g blacksand:install
     rake db:migrate
+    
+routes.rb
+
+    mount Blacksand::Engine => '/cms'
+    blacksand
 
 ### 示例
 

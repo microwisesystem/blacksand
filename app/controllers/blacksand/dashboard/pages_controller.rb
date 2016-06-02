@@ -3,6 +3,10 @@ module Blacksand
     before_action :set_page, only: [:show, :edit, :update, :destroy, :onchange_edit, :get_prototype_id]
     before_action :set_select, only: [:new, :edit, :onchange_new, :onchange_edit, :create, :update]
 
+    def default
+      redirect_to pages_url
+    end
+
     def index
       @page = Page.where(id: params[:parent_id]).first
       @parent_id = params[:parent_id] || 0
@@ -18,7 +22,7 @@ module Blacksand
 
       gon.pages = [{
                    text: '网站',
-                   href: children_partial_dashboard_pages_path(parent_id: nil),
+                   href: children_partial_pages_path(parent_id: nil),
                    page_id: 0,
                    nodes: tree_nodes,
                    }]

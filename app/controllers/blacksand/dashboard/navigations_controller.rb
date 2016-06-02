@@ -41,7 +41,7 @@ module Blacksand
 
       respond_to do |format|
         if @navigation.save
-          format.html { redirect_to dashboard_navigations_url, notice: 'Navigation was successfully created.' }
+          format.html { redirect_to navigations_url, notice: 'Navigation was successfully created.' }
           format.json { render :show, status: :created, location: [:dashboard, @navigation] }
         else
           format.html { render :new }
@@ -55,7 +55,7 @@ module Blacksand
     def update
       respond_to do |format|
         if @navigation.update(navigation_params)
-          format.html { redirect_to dashboard_navigations_url, notice: 'Navigation was successfully updated.' }
+          format.html { redirect_to navigations_url, notice: 'Navigation was successfully updated.' }
           format.json { render :show, status: :ok, location: @navigation }
         else
           format.html { render :edit }
@@ -69,7 +69,7 @@ module Blacksand
     def destroy
       @navigation.destroy
       respond_to do |format|
-        format.html { redirect_to dashboard_navigations_url, notice: 'Navigation was successfully destroyed.' }
+        format.html { redirect_to navigations_url, notice: 'Navigation was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

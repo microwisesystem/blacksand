@@ -16,7 +16,7 @@ module Blacksand
 
     # validates :title, :template, presence: true
 
-    after_save :normalize_kindeditor_assets
+    # after_save :normalize_kindeditor_assets
 
     # page.props.name
     # page.props[:name]
@@ -59,7 +59,7 @@ module Blacksand
     end
 
     def tree_node
-      href = Rails.application.routes.url_helpers.children_partial_dashboard_pages_path(parent_id: self.id)
+      href = Blacksand::Engine.routes.url_helpers.children_partial_pages_path(parent_id: self.id)
 
       return {text: self.title, href: href, page_id: self.id} if self.children.count == 0
 

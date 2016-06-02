@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-dragula'
   s.add_dependency 'rails-assets-bootstrap-treeview'
   s.add_dependency 'rails-assets-multiselect'
+  s.add_dependency 'rails-assets-select2'
 
   s.add_development_dependency "sqlite3"
 end

@@ -1,5 +1,5 @@
 module Blacksand
-  class Dashboard::BaseController < ApplicationController
+  class Dashboard::BaseController < ActionController::Base
     layout 'blacksand/dashboard'
 
     # TODO: devise

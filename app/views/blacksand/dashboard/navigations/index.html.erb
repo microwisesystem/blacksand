@@ -2,7 +2,7 @@
 
 <h3>导航</h3>
 
-<%= link_to '新增导航', new_dashboard_navigation_path, class: 'btn btn-default' %>
+<%= link_to '新增导航', new_navigation_path, class: 'btn btn-default' %>
 
 <p class="help-block">拖动排序</p>
 <table id="nav-table" class="table table-bordered">
@@ -15,15 +15,15 @@
     </tr>
   </thead>
 
-  <tbody data-update-url="<%= reorder_dashboard_navigations_path(format: :js) %>">
+  <tbody data-update-url="<%= reorder_navigations_path(format: :js) %>">
     <% @navigations.each do |navigation| %>
       <tr data-navigation-id="<%= navigation.id %>">
         <td><%= navigation.name %></td>
         <td><%= navigation.url %></td>
-        <td><%= link_to navigation.page.title, [:dashboard, navigation.page] if navigation.page.present? %></td>
+        <td><%= link_to navigation.page.title, navigation.page if navigation.page.present? %></td>
         <td>
-          <%= link_to '编辑', edit_dashboard_navigation_path(navigation) %>
-          <%= link_to '删除', [:dashboard, navigation], method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to '编辑', edit_navigation_path(navigation) %>
+          <%= link_to '删除', navigation, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>

@@ -14,14 +14,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<%= dashboard_pages_path %>">页面</a></li>
-        <li><a href="<%= dashboard_navigations_path %>">导航</a></li>
-        <li><a href="<%= dashboard_templates_path %>">模板</a></li>
-        <li><a href="<%= dashboard_prototypes_path %>">原型</a></li>
+        <li><a href="<%= pages_path %>">页面</a></li>
+        <li><a href="<%= navigations_path %>">导航</a></li>
+        <li><a href="<%= templates_path %>">模板</a></li>
+        <li><a href="<%= prototypes_path %>">原型</a></li>
         <% if false && can?(:create, User) %>
-          <li><a href="<%= dashboard_users_path %>">用户</a></li>
+          <li><a href="<%= users_path %>">用户</a></li>
         <% end %>
-        <li><a href="<%= Blacksand.root_path %>">回首页<span class="sr-only">(current)</span></a></li>
+        <li><a href="<%= main_app.root_path %>">回首页<span class="sr-only">(current)</span></a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

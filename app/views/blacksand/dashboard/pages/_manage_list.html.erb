@@ -1,4 +1,4 @@
-    <%= link_to new_dashboard_page_path(parent_id: @parent_id), class: "btn btn-primary" do %>
+    <%= link_to new_page_path(parent_id: @parent_id), class: "btn btn-primary" do %>
       <i class="glyphicon glyphicon-plus"></i> 新增页面
     <% end %>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-align-justify"></i> 排序</button>
@@ -22,9 +22,9 @@
           <td><%= page.template.try :name %></td>
           <td><%= page.prototype.try(:name) %></td>
           <td>
-            <%= link_to '编辑', edit_dashboard_page_path(page) %> |
-            <%= link_to '删除', dashboard_page_path(page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
-            <a href="<%= page_path(page) %>" target="_blank">
+            <%= link_to '编辑', edit_page_path(page) %> |
+            <%= link_to '删除', page_path(page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
+            <a href="<%= main_app.page_path(page) %>" target="_blank">
               <i class="glyphicon glyphicon-share"></i>预览
             </a>
           </td>
@@ -46,7 +46,7 @@
           </div>
           <div class="modal-body">
             <p class="help-block">拖动排序</p>
-            <ul id="modal-list" data-update-url="<%= sort_dashboard_pages_path %>">
+            <ul id="modal-list" data-update-url="<%= sort_pages_path %>">
               <% @all_children.each do |p| %>
                 <li data-id="<%= p.id %>"><%= p.title %></li>
               <% end %>

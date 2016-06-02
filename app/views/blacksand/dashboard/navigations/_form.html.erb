@@ -1,10 +1,10 @@
-<%= bootstrap_form_for([:dashboard, @navigation]) do |f| %>
+<%= bootstrap_form_for(@navigation) do |f| %>
 
     <%= f.text_field :name %>
     <%= f.text_field :url %>
     <%= f.text_field :position %>
 
-    <%= f.collection_select :page_id, Page.all, :id, :title, include_blank: true %>
+    <%= f.collection_select :page_id, Blacksand::Page.all, :id, :title, include_blank: true %>
 
     <%= f.form_group do %>
         <%= f.primary %>

@@ -8,7 +8,7 @@
   <tbody>
   <% @prototypes.each do |p| %>
       <tr>
-        <td><%= link_to p.name, [:dashboard, p] %></td>
+        <td><%= link_to p.name, prototype_path(p) %></td>
       </tr>
   <% end %>
   </tbody>
