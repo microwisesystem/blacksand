@@ -2,7 +2,6 @@
   <%= f.select :prototype_id, @prototype_select, {:include_blank => true}, { :onchange => "onchange_render(this.value);", } %>
   <%= f.select :template_id, @template_select %>
 
-  <%# f.select :parent_id, @page_select, {:include_blank => true} %>
   <% if @page.parent_id %>
       <%= f.select :parent_id, [[@page.parent.title, @page.parent_id]] %>
   <% else %>

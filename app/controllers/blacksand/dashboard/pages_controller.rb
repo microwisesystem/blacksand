@@ -147,9 +147,8 @@ module Blacksand
     end
 
     def set_select
-      @template_select = Template.all.map { |x| [x.name, x.id] }
+      @template_select = Template.all.map { |x| [x.name, x.id] }.sort_by {|x| x[0]}
       @prototype_select = Prototype.all.map { |x| [x.name, x.id] }
-      @page_select = Page.all.map { |x| [x.title, x.id] }
     end
 
     def page_params
