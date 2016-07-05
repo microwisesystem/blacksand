@@ -2,6 +2,8 @@ module Blacksand
   class Navigation < ActiveRecord::Base
     belongs_to :page
 
+    attribute :options, MyJsonType.new
+
     validates :name, presence: true
     validates :url, format: {with: URI.regexp}, if: Proc.new { |a| a.url.present? }
 

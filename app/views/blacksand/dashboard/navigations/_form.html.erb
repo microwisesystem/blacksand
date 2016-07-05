@@ -10,6 +10,12 @@
         <%= f.select :page_id, [] %>
     <% end %>
 
+    <%= f.fields_for :options, @navigation.options do |ff| %>
+        <%= ff.check_box 'hover_submenus', { label: '悬停显示子菜单' } %>
+
+        <%= ff.check_box 'link_sub_page', { label: '导航到子页面' } %>
+    <% end %>
+
     <%= f.form_group do %>
         <%= f.primary %>
     <% end %>

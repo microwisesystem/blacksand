@@ -82,7 +82,7 @@ module Blacksand
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def navigation_params
-      params.require(:navigation).permit(:name, :url, :page_id, :position)
+      params.require(:navigation).permit(:name, :url, :page_id, :position, :position, options: [ :hover_submenus, :link_sub_page ])
     end
   end
 end
