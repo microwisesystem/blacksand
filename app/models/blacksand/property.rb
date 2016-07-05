@@ -1,7 +1,12 @@
 module Blacksand
   class Property < ActiveRecord::Base
     mount_uploader :image, ImageUploader
-    mount_uploaders :gallery, ImageUploader
+
+    # Disable this feature. It's not available in release.
+    # ref: https://github.com/carrierwaveuploader/carrierwave/issues/1545
+    #
+    # mount_uploaders :gallery, ImageUploader
+
     belongs_to :page
     belongs_to :field
     default_scope { order(:field_id) }
