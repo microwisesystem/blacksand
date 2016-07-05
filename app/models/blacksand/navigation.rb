@@ -2,7 +2,12 @@ module Blacksand
   class Navigation < ActiveRecord::Base
     belongs_to :page
 
-    attribute :options, MyJsonType.new
+    # ActiveRecord attribute api changed, see http://api.rubyonrails.org/classes/ActiveRecord/Attributes/ClassMethods.html#method-i-attribute
+    if ActiveRecord::VERSION::MAJOR >= 5
+      attribute :options, :json_type
+    else
+      attribute :options, MyJsonType.new
+    end
 
     validates :name, presence: true
     validates :url, format: {with: URI.regexp}, if: Proc.new { |a| a.url.present? }
