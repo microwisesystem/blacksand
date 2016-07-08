@@ -42,4 +42,14 @@ prototypes:
     required: true
 ```
 
+`field_type` 目前支持 
+
+- date 
+- number 
+- string 
+- textarea 
+- rich_text 
+- image 
+- slide 
+- select
 
