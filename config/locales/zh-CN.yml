@@ -49,6 +49,9 @@ zh-CN:
         value: 值
         page: 页面
         field: 字段
+      blacksand/picture:
+        name: 名称
+        file: 图片
   enumerize:
     field:
       field_type:

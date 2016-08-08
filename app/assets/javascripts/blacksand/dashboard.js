@@ -8,5 +8,6 @@
 //= require kindeditor
 //= require select2
 //= require select2/i18n/zh-CN
+//= require cocoon
 
 //= require_tree ./dashboard

@@ -1,11 +1,12 @@
 <div id="page_form">
-	<%= render 'form', url: edit_page_path(@page) %>
+	<%= render 'form', url: page_path(@page) %>
 </div>
+
 <script type="text/javascript">
 var onchange_render = function(prototype_id) {
 	if(window.confirm('更换原型将删除这个页面下的所有信息，确定要更换原型吗？')){
 		$.ajax({
-			url: "/dashboard/pages/" + <%= @page.id %> + "/onchange_edit/?prototype_id="+prototype_id
+			url: "<%= onchange_edit_page_path(@page) %>" + "?prototype_id=" + prototype_id
 		})
 	} else {
 		$.ajax({

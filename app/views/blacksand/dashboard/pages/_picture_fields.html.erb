@@ -1,0 +1,18 @@
+<div class="nested-fields">
+  <hr>
+  <%= f.text_field :name %>
+  <%= f.file_field :file %>
+
+  <%= f.form_group do %>
+      <% if f.object.file.present? %>
+          <%= image_tag f.object.file, class: 'img-responsive' %>
+          <%= File.basename f.object.file.path %>
+      <% end %>
+  <% end %>
+
+  <%= f.form_group do %>
+    <%= link_to_remove_association f, class: 'btn btn-link' do %>
+      <i class="fa fa-trash"></i> 删除
+    <% end %>
+  <% end %>
+</div>

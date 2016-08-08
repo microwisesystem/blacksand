@@ -9,12 +9,12 @@
 <script type="text/javascript">
   // TODO: using url helper method
 var onchange_render = function(prototype_id) {
-		$.ajax({
-      <% if params["parent_id"].present?  %>
-			url: "/dashboard/pages/onchange_new/?prototype_id="+prototype_id+"&parent_id="+<%= params["parent_id"] %>
-      <% else %>
-      url: "/dashboard/pages/onchange_new/?prototype_id="+prototype_id
-      <% end %>
-		})
+  <% if params["parent_id"].present?  %>
+    var url = "<%= onchange_new_pages_path(parent_id: params[:parent_id]) %>" + "&prototype_id=" + prototype_id;
+  <% else %>
+    var url = "<%= onchange_new_pages_path %>" + "?prototype_id=" + prototype_id;
+  <% end %>
+
+  $.ajax({ url: url });
 }
 </script>

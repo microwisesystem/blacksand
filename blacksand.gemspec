@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'font-awesome-rails'
-  s.add_dependency 'nested_form'
+  s.add_dependency 'cocoon'
   s.add_dependency 'rails_kindeditor'
   s.add_dependency 'themes_on_rails'
   s.add_dependency 'enumerize'

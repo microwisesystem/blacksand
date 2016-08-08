@@ -27,19 +27,17 @@
           </div>
       <% end %>
   <% when 'gallery' then %>
-    <%= f.file_field :gallery, filed_options(f).merge(help: '图片显示顺序取决于上传文件名顺序') %>
-    <%= f.form_group do %>
-      <div class="row">
-        <% if f.object.gallery? %>
-          <% f.object.gallery.each do |image| %>
-            <div class="col-xs-6 col-md-3">
-              <div class="thumbnail">
-                <%= image_tag image.url %>
-              </div>
-            </div>
-          <% end %>
+    <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
+    <% end %>
+    <%= f.hidden_field :type %>
+    <%= f.fields_for :pictures do |picture| %>
+      <%= render 'picture_fields', f: picture %>
+    <% end %>
+
+    <%= f.form_group nil, class: 'add-picture' do %>
+        <%= link_to_add_association f, :pictures, 'data-association-insertion-node' => '.add-picture' do %>
+            <i class="fa fa-plus"></i> 添加图片
         <% end %>
-      </div>
     <% end %>
   <% when 'rich_text' then %>
     <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
