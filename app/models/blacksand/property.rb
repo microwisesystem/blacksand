@@ -1,6 +1,6 @@
 module Blacksand
   class Property < ActiveRecord::Base
-    mount_uploader :image, ImageUploader
+    mount_uploader :image, Blacksand::ImageUploader
 
     # Disable this feature. It's not available in release.
     # ref: https://github.com/carrierwaveuploader/carrierwave/issues/1545

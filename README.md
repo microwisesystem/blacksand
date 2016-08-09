@@ -30,7 +30,7 @@ routes.rb
 
 还有站点对应的模板和原型文件, `db/sites/demo.yml`。
 
-编辑模板和原型
+#### 编辑模板和原型
 
 ```yml
 templates:
@@ -61,3 +61,14 @@ prototypes:
 编辑完模型和原型后可以执行命令导入到数据库。
 
 `rake "blacksand:seed[demo]"`
+
+#### 模板页面
+
+出过首页详情页都会有 `@page` 变量, 变量有这些属性。
+
+- @page.title     # 页面标题
+- @page.content   # 页面内容
+- @page.props     # 页面自定义属性
+- @page.props.xxx # 获取页面 xxx 属性
+
+也可以通过页面标识('en_name')来获取 page, `page('museums')`

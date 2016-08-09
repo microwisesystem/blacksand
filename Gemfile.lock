@@ -6,6 +6,7 @@ PATH
       bootstrap-kaminari-views
       bootstrap-sass
       bootstrap_form
+      carrierwave
       cocoon
       enumerize
       font-awesome-rails

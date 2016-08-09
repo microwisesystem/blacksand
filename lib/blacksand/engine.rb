@@ -13,6 +13,7 @@ require 'cocoon'
 require 'font-awesome-rails'
 require 'enumerize'
 require 'ransack'
+require 'themes_on_rails'
 
 require 'rails-assets-util.css'
 require 'rails-assets-html5shiv'
