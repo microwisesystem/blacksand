@@ -26,6 +26,10 @@ routes.rb
     # 创建一个新的站点
     rails g blacksand:new_site demo
 
+会生成 `app/themes/demo/` 文件夹。
+
+还有站点对应的模板和原型文件, `db/sites/demo.yml`。
+
 编辑模板和原型
 
 ```yml
@@ -50,6 +54,10 @@ prototypes:
 - textarea 
 - rich_text 
 - image 
-- slide 
+- gallery 多张图片
+- slide 大图片
 - select
 
+编辑完模型和原型后可以执行命令导入到数据库。
+
+`rake "blacksand:seed[demo]"`
