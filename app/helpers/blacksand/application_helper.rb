@@ -7,14 +7,6 @@ module Blacksand
       super(objects, options)
     end
 
-    def page(en_name)
-      Page.where(en_name: en_name).first
-    end
-
-    def textarea2html(text)
-      text.split(' ').join('<br>').html_safe if text.present?
-    end
-
     def filed_options(f)
       filed_options = {}
       case f.object.field.field_type
