@@ -24,7 +24,9 @@ require 'rails-assets-dragula'
 require 'rails-assets-bootstrap-treeview'
 require 'rails-assets-multiselect'
 require 'rails-assets-select2'
+
 require 'blacksand/routing'
+require 'blacksand/controller_helper'
 
 module Blacksand
   def self.table_name_prefix
@@ -46,6 +48,10 @@ module Blacksand
         blacksand/dashboard.css
         blacksand/ie.js
       )
+    end
+
+    ActiveSupport.on_load :action_controller do
+      include ControllerHelper
     end
 
   end

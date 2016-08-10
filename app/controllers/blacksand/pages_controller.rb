@@ -1,7 +1,7 @@
 module Blacksand
   class PagesController < ApplicationController
-
     theme Blacksand.site_id
+    loan_navigations
 
     def show
       @page = Page.find params[:id]

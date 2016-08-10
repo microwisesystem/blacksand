@@ -72,3 +72,25 @@ prototypes:
 - @page.props.xxx # 获取页面 xxx 属性
 
 也可以通过页面标识('en_name')来获取 page, `page('museums')`
+
+#### 导航
+
+除过首页, page 页面 __默认__ 都会有 `@navigations` 变量可以在页面访问。`@navigations` 包括当前所有的导航,并且是排好序的。
+
+如果想让页面有 `@navigations` 可以给 controller 加 `load_navigatoins`, 例如
+
+```ruby
+class WelcomeController < ApplicationController
+  load_navigations
+
+end
+```
+
+Navigation 有这些属性
+
+* name    名称
+* url     地址,一般是外部链接
+* page    Page 对象
+* options 选项, Hash
+    * 'hover_submenus'
+    * 'link_sub_page'
