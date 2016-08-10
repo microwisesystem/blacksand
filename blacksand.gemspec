@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency "meta-tags"
   s.add_dependency "bootstrap-sass"
   s.add_dependency 'bootstrap_form'
-  s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'cocoon'
   s.add_dependency 'rails_kindeditor'
@@ -36,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-util.css'
   s.add_dependency 'rails-assets-html5shiv'
   s.add_dependency 'rails-assets-respond'
-  s.add_dependency 'rails-assets-eonasdan-bootstrap-datetimepicker'
+  s.add_dependency 'rails-assets-bootstrap-datepicker'
   s.add_dependency 'rails-assets-headroom.js'
   s.add_dependency 'rails-assets-dragula'
   s.add_dependency 'rails-assets-bootstrap-treeview'

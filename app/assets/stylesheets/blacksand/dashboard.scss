@@ -7,7 +7,7 @@ $container-large-desktop: (940px + $grid-gutter-width) !default;
 @import "font-awesome";
 @import "util.css/util";
 
-@import "bootstrap-datepicker3";
+@import "bootstrap-datepicker";
 @import "dragula/dragula";
 @import "multiselect";
 @import "select2";
