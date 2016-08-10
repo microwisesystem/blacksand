@@ -81,7 +81,7 @@ prototypes:
 
 ```ruby
 class WelcomeController < ApplicationController
-  load_navigations
+  blacksand
 
 end
 ```
