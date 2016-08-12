@@ -44,6 +44,11 @@ prototypes:
     field_type: date
     description: 发布时间
     required: true
+  - name: type
+    field_type: select
+    description: 发布时间
+    options: ['行业新闻', '企业新闻']
+    required: true
 ```
 
 `field_type` 目前支持 
