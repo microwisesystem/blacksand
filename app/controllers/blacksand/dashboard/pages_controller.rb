@@ -39,7 +39,8 @@ module Blacksand
     def children_partial
       @page = Page.where(id: params[:parent_id]).first
       @parent_id = params[:parent_id]
-      @all_children = Page.where(parent_id: params[:parent_id]).order(:position)
+      @q = Page.where(parent_id: params[:parent_id]).order(:position, created_at: :desc).ransack(params[:q])
+      @all_children = @q.result
       @pages = @all_children.page(params[:page])
     end
 
