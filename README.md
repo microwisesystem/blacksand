@@ -76,7 +76,11 @@ prototypes:
 - @page.props     # 页面自定义属性
 - @page.props.xxx # 获取页面 xxx 属性
 
-也可以通过页面标识('en_name')来获取 page, `page('museums')`
+也可以通过页面标识('en_name')来获取 page, `page('museums')` .
+
+__页面参数__
+
+模板有时候需要给 layout 或者  partial 传递一些参数, 就可以通过 `set_page_options title: 'IamTitle'`, 然后可以通过 `page_options(:title)` 获取。
 
 #### 导航
 
