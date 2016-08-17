@@ -1,7 +1,7 @@
 module BlacksandFront
   module PagesHelper
     def page(en_name)
-      Page.where(en_name: en_name).first
+      Blacksand::Page.where(en_name: en_name).first
     end
 
     def textarea2html(text)
