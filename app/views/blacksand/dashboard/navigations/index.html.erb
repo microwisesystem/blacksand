@@ -23,7 +23,7 @@
         <td><%= link_to navigation.page.title, navigation.page if navigation.page.present? %></td>
         <td>
           <%= link_to '编辑', edit_navigation_path(navigation) %>
-          <%= link_to '删除', navigation, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to '删除', navigation_path(navigation), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>

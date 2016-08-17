@@ -1,4 +1,4 @@
-module Blacksand
+module BlacksandFront
   module PagesHelper
     def page(en_name)
       Page.where(en_name: en_name).first

@@ -1,7 +1,7 @@
 module Blacksand
   module Routing
     def blacksand(path = :p)
-      scope module: 'blacksand' do
+      scope module: 'blacksand_front' do
         resources :pages, only: :show, path: path
       end
     end

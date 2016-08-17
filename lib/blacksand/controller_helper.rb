@@ -8,7 +8,7 @@ module Blacksand
       def blacksand
         theme Blacksand.site_id
         loan_navigations
-        helper Blacksand::PagesHelper
+        helper BlacksandFront::PagesHelper
       end
 
       def loan_navigations

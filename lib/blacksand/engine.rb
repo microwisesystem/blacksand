@@ -28,8 +28,6 @@ require 'blacksand/routing'
 require 'blacksand/controller_helper'
 
 module Blacksand
-  def self.table_name_prefix
-  end
 
   class Engine < ::Rails::Engine
     isolate_namespace Blacksand
