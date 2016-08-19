@@ -48,6 +48,10 @@ module Blacksand
         []
       end
     end
+    
+    def child(title)
+      self.children.where(title: title).first
+    end
 
     def content_first_image
       image_assets = image_assets_of_content

@@ -76,7 +76,29 @@ prototypes:
 - @page.props     # 页面自定义属性
 - @page.props.xxx # 获取页面 xxx 属性
 
+如果字段的属性是 gallery 可以通过 file 获取对应图片. 如下
+
+```
+@page.props.my_gallery.each do |picture| 
+  picutre.file   # image_tag(picutre.file), image_path(picutre.file)
+end
+```
+
 也可以通过页面标识('en_name')来获取 page, `page('museums')` .
+
+如何获取子页面
+
+```
+# 产品:
+#   - 产品列表
+#   - 产品目录
+```
+
+```
+@page # 产品
+@page.positioned_children # 返回排好序的子页面
+@page.child('产品列表')    # 返回特定标题的子页面
+```
 
 __页面参数__
 
