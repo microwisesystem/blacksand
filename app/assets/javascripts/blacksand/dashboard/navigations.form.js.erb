@@ -5,6 +5,8 @@ $(function(){
 
 	$('#navigation_page_id').select2({
 		language: 'zh-CN',
+    placeholder: '无',
+    allowClear: true,
 		ajax: {
 			url: '<%= Blacksand::Engine.routes.url_helpers.search_pages_path(format: :json) %>',
 			dataType: 'json',
