@@ -4,10 +4,11 @@
     <%= f.text_field :url %>
     <%= f.text_field :position %>
 
+    <!-- '无' 必须存在,要个 select2 allowClear 搭配使用才能生效 -->
     <% if @navigation.page_id %>
-        <%= f.select :page_id, [[@navigation.page.title, @navigation.page_id]] %>
+        <%= f.select :page_id, [['无', ''], [@navigation.page.title, @navigation.page_id]] %>
     <% else %>
-        <%= f.select :page_id, [] %>
+        <%= f.select :page_id, [['无', '']] %>
     <% end %>
 
     <%= f.fields_for :options, @navigation.options do |ff| %>

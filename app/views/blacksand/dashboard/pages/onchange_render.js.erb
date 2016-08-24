@@ -1,5 +1,7 @@
 $('#page_form').html('<%= j render partial: 'form', locals: { url: url_for_page(@page) } %>');
 
+initSelect2();
+
 KindEditor.create(
   'textarea[class="rich_text"]',
     {
