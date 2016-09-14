@@ -57,6 +57,10 @@ module Blacksand
       process :resize_to_fill => [1140,525]
     end
 
+    Property.find_each do |p|
+      p.image.recreate_versions! if p.image?
+    end
+
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:
     # def extension_white_list
