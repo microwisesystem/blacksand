@@ -53,6 +53,10 @@ module Blacksand
       process :resize_to_fill => [630, 330]
     end
 
+    version :larger do
+      process :resize_to_fill => [224,148]
+    end
+
     version :gallery do
       process :resize_to_fill => [1140,525]
     end
