@@ -57,7 +57,7 @@ module Blacksand
       process :resize_to_fill => [1140,525]
     end
 
-    Property.find_each do |p|
+    Picture.find_each do |p|
       p.image.recreate_versions! if p.image?
     end
 
