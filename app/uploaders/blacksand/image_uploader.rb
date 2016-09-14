@@ -60,10 +60,7 @@ module Blacksand
     version :larger do
       process :resize_to_fill => [224,148]
     end
-
-    Picture.find_each do |i|
-      i.file.recreate_versions! if i.file?
-    end
+    
 
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:
