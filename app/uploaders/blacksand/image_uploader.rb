@@ -62,7 +62,7 @@ module Blacksand
     end
 
     Picture.find_each do |i|
-      p.file.recreate_versions! if i.file?
+      i.file.recreate_versions! if i.file?
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
