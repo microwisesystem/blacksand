@@ -32,6 +32,7 @@ module Blacksand
     end
 
     def search
+      # TODO: 查询排除自己
       @q = Page.ransack(params[:q])
       @pages = @q.result.page(params[:page])
     end
