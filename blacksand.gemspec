@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.2.6", '< 5.1'
   s.add_dependency "carrierwave"
+  s.add_dependency "carrierwave-qiniu"
   s.add_dependency "kaminari"
   s.add_dependency 'bootstrap-kaminari-views'
   s.add_dependency "gon"
@@ -42,5 +43,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-multiselect'
   s.add_dependency 'rails-assets-select2'
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "pg"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-rails"
+  # s.add_development_dependency "factory_girl_rails"
 end

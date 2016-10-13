@@ -1,5 +1,6 @@
 require 'rails'
 require 'carrierwave'
+require 'carrierwave-qiniu'
 require 'rails_kindeditor'
 require 'mini_magick'
 require 'kaminari'
@@ -26,6 +27,7 @@ require 'rails-assets-select2'
 
 require 'blacksand/routing'
 require 'blacksand/controller_helper'
+require 'blacksand/uploader'
 
 module Blacksand
 
