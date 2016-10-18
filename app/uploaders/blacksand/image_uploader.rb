@@ -37,29 +37,29 @@ module Blacksand
     #   process resize_to_fit: [50, 50]
     # end
 
-    version :thumb do
-      process :resize_to_fill => [200, 200]
-    end
-
-    version :thumb_resize_and_pad do
-      process :resize_and_pad => [200, 200]
-    end
-
-    version :small do
-      process :resize_to_fill => [280, 150]
-    end
-
-    version :normal do
-      process :resize_to_fill => [630, 330]
-    end
-
-    version :gallery do
-      process :resize_to_fill => [1140,525]
-    end
-
-    version :larger do
-      process :resize_to_fill => [224,148]
-    end
+    # version :thumb do
+    #   process :resize_to_fill => [200, 200]
+    # end
+    #
+    # version :thumb_resize_and_pad do
+    #   process :resize_and_pad => [200, 200]
+    # end
+    #
+    # version :small do
+    #   process :resize_to_fill => [280, 150]
+    # end
+    #
+    # version :normal do
+    #   process :resize_to_fill => [630, 330]
+    # end
+    #
+    # version :gallery do
+    #   process :resize_to_fill => [1140,525]
+    # end
+    #
+    # version :larger do
+    #   process :resize_to_fill => [224,148]
+    # end
 
 
     # Add a white list of extensions which are allowed to be uploaded.

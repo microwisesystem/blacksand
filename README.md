@@ -125,3 +125,43 @@ Navigation 有这些属性
 * options 选项, Hash
     * 'hover_submenus'
     * 'link_sub_page'
+
+#### 图片样式
+
+文件上传使用的是 carrierwave, 目前集成了两种处理方式一直种是 carrierwave 自带的图片处理，另一种是借助七牛的图片处理。
+
+使用方法如下：
+
+文件存储, 使用自带的图片处理方式(如果是七牛存储自带的图片处理也能正常工作)。
+```ruby
+Blacksand.carrierwave_storage = :file
+
+Blacksand::ImageUploader.class_eval do
+    version :thumb do
+      process :resize_to_fill => [200, 200]
+    end
+
+    version :thumb_resize_and_pad do
+      process :resize_and_pad => [200, 200]
+    end
+
+    version :small do
+      process :resize_to_fill => [280, 150]
+    end
+end
+
+```
+
+七牛存储，使用七牛的图片处理(参考 http://developer.qiniu.com/code/v6/api/kodo-api/image/index.html)。
+
+```ruby
+Blacksand.carrierwave_storage = :qiniu
+
+Blacksand::ImageUploader.class_eval do
+  qiniu_styles({
+    :'300xMIN' => 'imageMogr2/thumbnail/!300x300r/gravity/Center/crop/300x300/interlace/1',
+    :'500xMIN' => 'imageMogr2/thumbnail/!500x500r/gravity/Center/crop/500x500/interlace/1'
+  })
+end
+```
+

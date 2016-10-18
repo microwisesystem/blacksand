@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.2.6", '< 5.1'
   s.add_dependency "carrierwave"
-  s.add_dependency "carrierwave-qiniu"
+  s.add_dependency "carrierwave-qiniu", '>= 0.2.6'
   s.add_dependency "kaminari"
   s.add_dependency 'bootstrap-kaminari-views'
   s.add_dependency "gon"

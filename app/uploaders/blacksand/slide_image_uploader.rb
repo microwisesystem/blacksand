@@ -38,17 +38,17 @@ module Blacksand
     #   process resize_to_fit: [50, 50]
     # end
 
-    version :slide do
-      process :resize_to_fill => [940, 300]
-    end
-
-    version :slide_1140 do
-      process :resize_to_fill => [1140, 300]
-    end
-
-    version :slide_with_pad do
-      process :resize_and_pad => [1140, 300]
-    end
+    # version :slide do
+    #   process :resize_to_fill => [940, 300]
+    # end
+    #
+    # version :slide_1140 do
+    #   process :resize_to_fill => [1140, 300]
+    # end
+    #
+    # version :slide_with_pad do
+    #   process :resize_and_pad => [1140, 300]
+    # end
 
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:

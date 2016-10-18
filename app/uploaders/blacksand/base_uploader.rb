@@ -1,8 +1,12 @@
 module Blacksand
-  class BaseUploader < CarrierWave::Uploader::Base
-    include CarrierWave::MiniMagick
+  class BaseUploader < ::CarrierWave::Uploader::Base
+    include ::CarrierWave::MiniMagick
 
-    set_storage_from_config
+    def self.storage_from_config
+      Blacksand.carrierwave_storage
+    end
+
+    storage storage_from_config
 
     # TODO: config store_dir prefix
     def store_dir

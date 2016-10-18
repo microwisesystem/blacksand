@@ -27,7 +27,6 @@ require 'rails-assets-select2'
 
 require 'blacksand/routing'
 require 'blacksand/controller_helper'
-require 'blacksand/uploader'
 
 module Blacksand
 

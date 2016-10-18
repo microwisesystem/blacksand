@@ -13,5 +13,5 @@ module Blacksand
   mattr_accessor :carrierwave_storage
 
 
-  self.carrierwave_storage= 'file'
+  self.carrierwave_storage= :file
 end
