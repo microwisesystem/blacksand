@@ -1,6 +1,6 @@
 namespace :carrierwave do
   desc "Migrate to new storage from file"
-  task :from_file, [:model_class, :attribute] => :environment do |t, args|
+  task :from_file_to_qiniu, [:model_class, :attribute] => :environment do |t, args|
     # TODO:  独立出 public/uploads 目录, 和 store_dir 策略
     model_class, attribute = args.model_class, args.attribute
     model_class.constantize.all.each do |model|

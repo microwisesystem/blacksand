@@ -170,7 +170,7 @@ image.url('300xMIN')
 如果 carrierwave 的 storage 由 file 改为 qiniu, 图片迁移脚本
 
 ```
-rake "carrierwave:migrate_to_qiniu[Blacksand::Property,image]"
-rake "carrierwave:migrate_to_qiniu[Blacksand::Picture,file]"
+rake "carrierwave:from_file_to_qiniu[Blacksand::Property,image]"
+rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
 ```
 
