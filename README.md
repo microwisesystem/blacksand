@@ -172,5 +172,6 @@ image.url('300xMIN')
 ```
 rake "carrierwave:from_file_to_qiniu[Blacksand::Property,image]"
 rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
+rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"
 ```
 
