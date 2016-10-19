@@ -163,5 +163,7 @@ Blacksand::ImageUploader.class_eval do
     :'500xMIN' => 'imageMogr2/thumbnail/!500x500r/gravity/Center/crop/500x500/interlace/1'
   })
 end
+
+image.url('300xMIN')
 ```
 
