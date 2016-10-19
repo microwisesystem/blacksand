@@ -6,7 +6,8 @@ class CreateProperties < ActiveRecord::Migration
       t.references :field, index: true, foreign_key: true
       t.string  :type
       t.json :gallery
-      t.string :image, :string
+      t.string :image
+      t.string :file
 
       t.timestamps null: false
     end

@@ -19,6 +19,8 @@ module Blacksand
           errors.add(:image, "#{field.description}不能为空") if field.required? && !image.present?
         when 'gallery' then
           errors.add(:gallery, "#{field.description}不能为空") if field.required? && !pictures.any?
+        when 'file' then
+          errors.add(:file, "#{field.description}不能为空") if field.required? && !file.present?
         else
           errors.add(:value, "#{field.description}不能为空") if field.required? && !value.present?
       end
@@ -30,6 +32,8 @@ module Blacksand
           self.image
         when 'gallery' then
           self.pictures
+        when 'file' then
+          self.file
         else
           self.value
       end
@@ -47,7 +51,7 @@ module Blacksand
     end
 
     def self.build_property(page, field)
-      if field.field_type.in? %w[slide gallery]
+      if field.field_type.in? %w[file slide gallery]
         page.properties.build(field: field, type: "Blacksand::Property::#{field.field_type.capitalize}")
       else
         page.properties.build(field: field)

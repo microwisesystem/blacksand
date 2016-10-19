@@ -61,6 +61,7 @@ prototypes:
 - image 
 - gallery 多张图片
 - slide 大图片
+- file 文件
 - select
 
 编辑完模型和原型后可以执行命令导入到数据库。

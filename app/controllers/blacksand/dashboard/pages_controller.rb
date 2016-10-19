@@ -155,7 +155,7 @@ module Blacksand
 
     def page_params
       params.require(:page).permit(:title, :en_name, :parent_id, :template_id, :prototype_id, :content,
-                                   :properties_attributes => [:id, :value, :type, :image, :field_id,
+                                   :properties_attributes => [:id, :value, :type, :image, :field_id, :file,
                                                               {:pictures_attributes => [:id, :name, :file, :_destroy]}])
     end
 

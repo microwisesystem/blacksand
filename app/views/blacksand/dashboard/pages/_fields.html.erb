@@ -26,6 +26,18 @@
             <% end %>
           </div>
       <% end %>
+<% when 'file' then %>
+    <%= f.hidden_field :type %>
+    <%= f.file_field :file, filed_options(f) %>
+    <%= f.form_group do %>
+        <div class="row">
+          <% if f.object.file? %>
+              <div class="col-xs-6 col-md-3">
+                <a target="_blank" href="<%= f.object.file_url %>"><%= File.basename f.object.file.path %></a>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
   <% when 'gallery' then %>
     <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
     <% end %>
