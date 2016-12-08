@@ -63,6 +63,7 @@ prototypes:
 - slide 大图片
 - file 文件
 - select
+- page 关联页面(Page)
 
 编辑完模型和原型后可以执行命令导入到数据库。
 
