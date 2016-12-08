@@ -34,6 +34,8 @@ module Blacksand
           self.pictures
         when 'file' then
           self.file
+        when 'page' then
+          Page.find_by(id: self.value)
         else
           self.value
       end

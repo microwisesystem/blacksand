@@ -8,7 +8,7 @@ module Blacksand
     validates :name, :description, :field_type, presence: true
     validates :options, presence: true, if: 'select?'
 
-    enumerize :field_type, in: %w{date number string textarea rich_text image gallery slide file select}
+    enumerize :field_type, in: %w{date number string textarea rich_text image gallery slide file select page}
 
     default_scope { order(:id) }
 
@@ -29,15 +29,6 @@ module Blacksand
         end
         page.save(validate: false)
       end
-
-      # Page.all.each do |page|
-      #   if page.properties.present?
-      #     (page.prototype.fields.map(&:id) - page.properties.map(&:field_id)).each do |field_id|
-      #       page.properties.build(field_id: field_id)
-      #     end
-      #     page.save(validate: false)
-      #   end
-      # end
     end
 
   end

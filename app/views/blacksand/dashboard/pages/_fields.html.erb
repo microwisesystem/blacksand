@@ -60,7 +60,10 @@
   <% when 'textarea' then %>
     <%= f.text_area :value, filed_options(f) %>
   <% when 'select' then %>
-      <%= f.select :value, f.object.field.options.map{|e| [e, e]}, filed_options(f) %>
+    <%= f.select :value, f.object.field.options.map{|e| [e, e]}, filed_options(f) %>
+  <% when 'page' then %>
+    <!-- page select2 -->
+    <%= f.select :value, select_choices(f), filed_options(f), { data: { provide: 'page-select2' } } %>
   <% else %>
     <%= f.text_field :value, filed_options(f) %>
 <% end %>
