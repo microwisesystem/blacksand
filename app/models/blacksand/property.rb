@@ -1,5 +1,7 @@
 module Blacksand
   class Property < ActiveRecord::Base
+    include ActionView::Helpers::TextHelper
+
     mount_uploader :image, Blacksand::ImageUploader
 
     # Disable this feature. It's not available in release.
@@ -28,6 +30,8 @@ module Blacksand
 
     def content
       case (self.field.field_type)
+        when 'textarea'
+          simple_format(self.value)
         when 'image', 'slide' then
           self.image
         when 'gallery' then
