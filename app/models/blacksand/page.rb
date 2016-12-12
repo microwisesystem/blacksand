@@ -53,6 +53,10 @@ module Blacksand
       self.children.where(title: title).first
     end
 
+    def child_with(conditions)
+      self.children.find_by(conditions)
+    end
+
     def content_first_image
       image_assets = image_assets_of_content
 

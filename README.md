@@ -104,7 +104,7 @@ end
 
 __页面参数__
 
-模板有时候需要给 layout 或者  partial 传递一些参数, 就可以通过 `set_page_options title: 'IamTitle'`, 然后可以通过 `page_options(:title)` 获取。
+模板有时候需要给 layout 或者  partial 传递一些参数, 就可以通过 `set_page_options title: 'IamTitle'`, 然后可以通过 `page_options[:title]` 获取。
 
 #### 导航
 
