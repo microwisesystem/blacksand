@@ -38,4 +38,32 @@ $(function(){
   window.initSelect2 = initSelect2;
 
   initSelect2();
+
+
+  // add text input for array property
+
+  $('body').on('click', '.add-item-button', function(){
+  	var childIndex = $(this).data('childIndex');
+  	var inputName = 'page[properties_attributes][' + childIndex + '][values][]';
+  	var newItem =
+      "<div class='form-group'>" +
+        "<div class='col-sm-offset-2 col-sm-8'>" +
+          "<input type='text' name='" + inputName + "' class='form-control'>" +
+        "</div>" +
+        "<div class='col-sm-2'>" +
+          "<a class='btn btn-link btn-default btn-sm up-item-button'>上移</a>" +
+          "<a class='btn btn-link btn-default btn-sm remove-item-button'>删除</a>" +
+        "</div>" +
+      "</div>";
+  	$(this).parents('.add-item').before(newItem);
+  })
+
+  $('body').on('click', '.remove-item-button', function(){
+  	$(this).parents('.array-item').remove();
+  })
+
+  $('body').on('click', '.up-item-button', function(){
+  	var $item = $(this).parents('.array-item');
+  	$item.prev('.array-item').before($item);
+  })
 });

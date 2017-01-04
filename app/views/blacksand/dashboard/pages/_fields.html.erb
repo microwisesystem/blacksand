@@ -51,6 +51,26 @@
             <i class="fa fa-plus"></i> 添加图片
         <% end %>
     <% end %>
+  <% when 'array' then %>
+    <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
+    <% end %>
+    <%= f.hidden_field :type %>
+    <% f.object.values.each do |item| %>
+        <div class="form-group array-item">
+          <div class="col-md-offset-2 col-md-8">
+            <%= text_field_tag "page[properties_attributes][#{f.options[:child_index]}][values][]", item, class: 'form-control' %>
+          </div>
+          <div class="col-md-2">
+            <a class='btn btn-link btn-default btn-sm up-item-button'>上移</a>
+            <a class='btn btn-link btn-default btn-sm remove-item-button'>删除</a>
+          </div>
+        </div>
+    <% end %>
+
+    <%= f.form_group nil, class: 'add-item' do %>
+        <a class="add-item-button btn btn-link" data-child-index="<%= f.options[:child_index] %>">添加项目</a>
+    <% end %>
+
   <% when 'rich_text' then %>
     <%= f.form_group label: {text: "#{f.object.field.description}", class: "#{'required' if f.object.field.required?}"} do %>
       <%= f.kindeditor :value, class: "rich_text" %>

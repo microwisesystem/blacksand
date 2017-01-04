@@ -20,6 +20,10 @@ routes.rb
 
     mount Blacksand::Engine => '/cms'
     blacksand
+    
+更新数据库迁移脚本
+
+    rake blacksand:install:migrations
 
 ### 示例
 
@@ -64,6 +68,7 @@ prototypes:
 - file 文件
 - select
 - page 关联页面(Page)
+- array 数组
 
 编辑完模型和原型后可以执行命令导入到数据库。
 

@@ -40,6 +40,8 @@ module Blacksand
           self.file
         when 'page' then
           Page.find_by(id: self.value)
+        when 'array' then
+          self.values
         else
           self.value
       end
@@ -51,6 +53,8 @@ module Blacksand
       case self.field.field_type
         when 'date' then
           Date.strptime(self.value, '%F')
+        when 'array' then
+          self.values
         else
           self.value
       end
@@ -59,6 +63,8 @@ module Blacksand
     def self.build_property(page, field)
       if field.field_type.in? %w[file slide gallery]
         page.properties.build(field: field, type: "Blacksand::Property::#{field.field_type.capitalize}")
+      elsif field.field_type == 'array'
+        page.properties.build(field: field, type: "Blacksand::Property::As#{field.field_type.capitalize}")
       else
         page.properties.build(field: field)
       end
