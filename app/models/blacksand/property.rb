@@ -23,6 +23,8 @@ module Blacksand
           errors.add(:gallery, "#{field.description}不能为空") if field.required? && !pictures.any?
         when 'file' then
           errors.add(:file, "#{field.description}不能为空") if field.required? && !file.present?
+        when 'array' then
+          errors.add(:values, "#{field.description}不能为空") if field.required? && !values.present?
         else
           errors.add(:value, "#{field.description}不能为空") if field.required? && !value.present?
       end
