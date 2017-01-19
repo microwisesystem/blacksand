@@ -2,7 +2,11 @@ module Blacksand
   class Dashboard::BaseController < ActionController::Base
     layout 'blacksand/dashboard'
 
-    # TODO: devise
-    # before_action :authenticate_user!
+    before_action :_authenticate!
+
+    private
+    def _authenticate!
+      instance_eval(&Blacksand.authenticate_with)
+    end
   end
 end

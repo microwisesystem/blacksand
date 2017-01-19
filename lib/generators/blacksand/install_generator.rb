@@ -9,6 +9,12 @@ module Blacksand
 Blacksand.site_id   = 'site id'
 Blacksand.site_name = 'site name'
 Blacksand.root_path = 'root path'
+
+# Setup authentication to be run as a before filter 
+# @example Devise admin
+#   Blacksand.authenticate_with do
+#     authenticate_admin!
+#   end
         RUBY
 
         rake 'railties:install:migrations'
