@@ -48,6 +48,14 @@ module Blacksand
         []
       end
     end
+
+    def descendents
+      self.positioned_children.reduce([]) do |all, child|
+        all << child
+        all.concat(child.descendents)
+        all
+      end
+    end
     
     def child(title)
       self.children.where(title: title).first
