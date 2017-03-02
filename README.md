@@ -182,3 +182,38 @@ rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
 rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"
 ```
 
+## 认证和权限
+
+
+#### 认证
+
+认证可以使用 Devise 或者自定义。
+
+
+`initializers/blacksand.rb`
+```ruby
+# block 会在 controller 里执行
+Blacksand.authenticate_with do
+  # Devise
+  authenticate_user!
+  
+  # HTTP basic auth
+  # authenticate_or_request_with_http_basic do |u, p|
+  #   u == 'admin' && p == 'password'
+  # end
+end
+```
+
+#### 授权
+
+授权目前只支持 cancancan.
+
+initializers/blacksand.rb
+```ruby
+Blacksand.authorize_with :cancancan
+# 用时要定义 current_user
+Blacksand.current_user_method do
+  # Devise
+  current_user
+end
+```

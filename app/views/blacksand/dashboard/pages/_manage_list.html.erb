@@ -2,12 +2,18 @@
 <% if @parent_id %>
     <div class="row m-v-10">
       <div class="col-md-8">
-        <h4><%= Blacksand::Page.find(@parent_id).title if @parent_id.present? %></h4>
+        <h4><%= @parent_page.title %></h4>
       </div>
       <div class="col-md-4 text-right" style="line-height: 39px;">
-        <%= link_to '编辑', edit_page_path(@parent_id) %> |
-        <%= link_to '删除', page_path(@parent_id), method: :delete, data: { confirm: '确定要删除吗?' } %> |
-        <a href="<%= Rails.application.routes.url_helpers.page_path(@parent_id) %>" target="_blank">
+        <% if visible?(:edit, @parent_page) %>
+          <%= link_to '编辑', edit_page_path(@parent_page) %> |
+        <% end %>
+
+        <% if visible?(:destroy, @parent_page) %>
+          <%= link_to '删除', page_path(@parent_page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
+        <% end %>
+
+        <a href="<%= Rails.application.routes.url_helpers.page_path(@parent_page) %>" target="_blank">
           <i class="glyphicon glyphicon-share"></i>预览
         </a>
       </div>
@@ -15,10 +21,15 @@
 <% end %>
 
 <div class="m-v-10">
-  <%= link_to new_page_path(parent_id: @parent_id), class: "btn btn-primary" do %>
-      <i class="glyphicon glyphicon-plus"></i> 新增页面
+  <% if visible?(:create, Blacksand::Page) %>
+    <%= link_to new_page_path(parent_id: @parent_id), class: "btn btn-primary" do %>
+        <i class="glyphicon glyphicon-plus"></i> 新增页面
+    <% end %>
   <% end %>
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-align-justify"></i> 排序</button>
+
+  <% if visible?(:sort, Blacksand::Page) %>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-align-justify"></i> 排序</button>
+  <% end %>
 </div>
 
 <div class="m-v-10">
@@ -52,8 +63,14 @@
       <td><%= page.template.try :name %></td>
       <td><%= page.prototype.try(:name) %></td>
       <td>
-        <%= link_to '编辑', edit_page_path(page) %> |
-        <%= link_to '删除', page_path(page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
+        <% if visible?(:edit, page) %>
+          <%= link_to '编辑', edit_page_path(page) %> |
+        <% end %>
+
+        <% if visible?(:destroy, page) %>
+          <%= link_to '删除', page_path(page), method: :delete, data: { confirm: '确定要删除吗?' } %> |
+        <% end %>
+
         <a href="<%= main_app.page_path(page) %>" target="_blank">
           <i class="glyphicon glyphicon-share"></i>预览
         </a>

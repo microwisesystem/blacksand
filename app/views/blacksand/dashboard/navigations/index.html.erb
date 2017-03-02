@@ -2,7 +2,9 @@
 
 <h3>导航</h3>
 
-<%= link_to '新增导航', new_navigation_path, class: 'btn btn-default' %>
+<% if visible?(:create, Blacksand::Navigation) %>
+  <%= link_to '新增导航', new_navigation_path, class: 'btn btn-default' %>
+<% end %>
 
 <p class="help-block">拖动排序</p>
 <table id="nav-table" class="table table-bordered">
@@ -22,8 +24,13 @@
         <td><%= navigation.url %></td>
         <td><%= link_to navigation.page.title, navigation.page if navigation.page.present? %></td>
         <td>
-          <%= link_to '编辑', edit_navigation_path(navigation) %>
-          <%= link_to '删除', navigation_path(navigation), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% if visible?(:update, navigation) %>
+            <%= link_to '编辑', edit_navigation_path(navigation) %>
+          <% end %>
+
+          <% if visible?(:destroy, navigation) %>
+            <%= link_to '删除', navigation_path(navigation), method: :delete, data: { confirm: '确定删除导航?' } %>
+          <% end %>
         </td>
       </tr>
     <% end %>
