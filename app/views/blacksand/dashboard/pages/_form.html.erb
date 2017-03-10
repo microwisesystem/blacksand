@@ -17,7 +17,7 @@
     <%= property_form.hidden_field :field_id %>
 	<% end %>
   <%= f.form_group label: { text: '内容' } do %>
-      <%= f.kindeditor :content, :owner_id => @page.id %>
+      <%= f.kindeditor :content, :owner => @page %>
   <% end %>
 
   <%= f.form_group do %>

@@ -1,3 +1,5 @@
+require 'uri'
+
 module Blacksand
   class Page < ActiveRecord::Base
     belongs_to :parent, class_name: Page, foreign_key: 'parent_id'
@@ -8,7 +10,7 @@ module Blacksand
     belongs_to :prototype
 
     has_many :properties, :dependent => :destroy
-    # has_many_kindeditor_assets :attachments, :dependent => :destroy
+    has_many_kindeditor_assets :attachments, :dependent => :destroy
 
     accepts_nested_attributes_for :properties
 
@@ -16,7 +18,12 @@ module Blacksand
 
     # validates :title, :template, presence: true
 
-    # after_save :normalize_kindeditor_assets
+    # 在新建页面的时候，上传的图片没有 owner_id 和 owner_type
+    # TODO: 还有一种情况是在新建页面的时候，图片上传上来后又被删除了。这时候图片就变成没有人认领的孤儿了。
+    after_commit :set_owner_for_kindeditor_assets, on: :create
+
+    # 在编辑的过程中可能从内容中删除了部分图片, 但是 Kinkeditor::Assets 还没有被删除
+    after_commit :clean_unsued_kindeditor_assets, on: :update
 
     # page.props.name
     # page.props[:name]
@@ -74,6 +81,12 @@ module Blacksand
       Kindeditor::Asset.where(asset: asset_name).first
     end
 
+    def all_image_srcs_of_content
+      html_doc = Nokogiri::HTML(self.content)
+      images = html_doc.xpath("//img")
+      images.map{|img| img['src'] }
+    end
+
     def tree_node
       href = Blacksand::Engine.routes.url_helpers.children_partial_pages_path(parent_id: self.id)
 
@@ -129,34 +142,37 @@ module Blacksand
 
     protected
 
-    # 1. set owner for assets
-    # 2. remove assets not exists
-    # 3. TODO uploaded assets were be deleted before submit new page
-    def normalize_kindeditor_assets
-
-      return unless self.content_changed?
-
+    def set_owner_for_kindeditor_assets
       image_assets = image_assets_of_content
 
       image_assets.each do |asset_name|
-        asset = Kindeditor::Asset.where(asset: asset_name).first
-        asset.update(owner_id: self.id) if asset.owner_id.blank?
+        asset = Kindeditor::Asset.where(asset: asset_name, owner_id: 0).first
+        asset.update(owner_id: self.id, owner_type: self.class.name)
       end
+    end
 
+    def clean_unsued_kindeditor_assets
+      image_assets = image_assets_of_content
       exists_image_assets = self.attachments.to_a.select { |asset| asset.asset_type == 'image' }.map { |a| a.asset.file.filename }
-      redundant_image_assets = exists_image_assets - image_assets
 
+      redundant_image_assets = exists_image_assets - image_assets
       Kindeditor::Asset.where('asset in (?)', redundant_image_assets).destroy_all
     end
 
     # 返回内容中所有上传的图片
     def image_assets_of_content
-      html_doc = Nokogiri::HTML(self.content)
-      images = html_doc.xpath("//img")
-      image_assets = images.map do |img|
-        match = Regexp.new('^/uploads/image/.+/(.+)$').match img['src']
-        match[1] if match
-      end.compact
+      srcs = all_image_srcs_of_content.select do |src|
+        # 本地上传的文件
+        if src.start_with? "/#{RailsKindeditor.upload_store_dir}"
+          true
+        # 有可能是与存储
+        elsif src.start_with?("http") && URI(src).path.start_with?("/#{RailsKindeditor.upload_store_dir}")
+          true
+        else
+          false
+        end
+      end
+      srcs.map { |src| File.basename(src) }
     end
   end
 end
