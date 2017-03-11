@@ -17,9 +17,10 @@ module Blacksand
   mattr_accessor :root_path
 
   mattr_accessor :carrierwave_storage
-
+  mattr_accessor :carrierwave_store_dir_prefix
 
   self.carrierwave_storage = :file
+  self.carrierwave_store_dir_prefix = 'uploads'
 
   def self.authenticate_with(&block)
     @authenticate = block if block
