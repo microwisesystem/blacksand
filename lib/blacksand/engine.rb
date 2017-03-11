@@ -48,6 +48,13 @@ module Blacksand
       )
     end
 
+    initializer "blacksand.override_upload_storage", after: "rails_kindeditor.image_process" do
+      # Storage be same with Our uploaders
+      Kindeditor::AssetUploader.class_eval do
+        storage Blacksand.carrierwave_storage
+      end
+    end
+
     ActiveSupport.on_load :action_controller do
       include ControllerHelper
     end
