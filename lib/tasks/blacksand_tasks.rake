@@ -4,6 +4,14 @@
 # end
 
 namespace :blacksand do
+  desc "Clean unsued kindeditor assets"
+  task :clean_kindeditor_assets => :environment do ||
+    puts "Delete unsued kindeditor assets 1 day ago"
+    assets = Kindeditor::Asset.where(owner_id: 0).where("created_at <= ?", 1.day.ago)
+    puts "Assets: #{assets.count}"
+    assets.destroy_all
+  end
+
   desc "Seed templates and prototypes and clean unused of them"
   task :seed, [:site_id] => :environment do |t, args|
     site_id = args.site_id
