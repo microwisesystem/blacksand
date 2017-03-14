@@ -153,7 +153,7 @@ module Blacksand
 
     def clean_unsued_kindeditor_assets
       image_assets = image_assets_of_content
-      exists_image_assets = self.attachments.to_a.select { |asset| asset.asset_type == 'image' }.map { |a| a.asset.file.filename }
+      exists_image_assets = self.attachments.to_a.select { |asset| asset.asset_type == 'image' }.map { |a| File.basename(a.asset.path) }
 
       redundant_image_assets = exists_image_assets - image_assets
       Kindeditor::Asset.where('asset in (?)', redundant_image_assets).destroy_all
