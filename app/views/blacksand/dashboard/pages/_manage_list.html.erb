@@ -25,9 +25,11 @@
       <div class="col-md-12">
         <table class="table">
           <tr class="text-muted">
-            <td> 标识: <%= @parent_page.en_name %> </td>
-            <td>模板: <%= @parent_page.template.try(:name) %></td>
-            <td>原型: <%= @parent_page.prototype.try(:name) %></td>
+            <td> 标识: <strong><%= @parent_page.en_name %></strong></td>
+            <td>模板: <strong><%= @parent_page.template.try(:name) %></strong></td>
+            <td>原型: <strong><%= @parent_page.prototype.try(:name) %></strong></td>
+            <td>子页面推荐模板: <strong><%= @parent_page.preferred_child_template_name %></strong></td>
+            <td>子页面推荐原型: <strong><%= @parent_page.preferred_child_prototype_name %></strong></td>
           </tr>
         </table>
       </div>

@@ -87,6 +87,14 @@ module Blacksand
       images.map{|img| img['src'] }
     end
 
+    def preferred_child_template_name
+      preferred_option('preferred_child_template_name')
+    end
+
+    def preferred_child_prototype_name
+      preferred_option('preferred_child_prototype_name')
+    end
+
     def tree_node
       href = Blacksand::Engine.routes.url_helpers.children_partial_pages_path(parent_id: self.id)
 
@@ -173,6 +181,14 @@ module Blacksand
         end
       end
       srcs.map { |src| File.basename(src) }
+    end
+
+    def preferred_option(key)
+      if self.template && self.template.options.present? && self.template.options[key]
+        self.template.options[key]
+      elsif self.prototype && self.prototype.options.present? && self.prototype.options[key]
+        self.prototype.options[key]
+      end
     end
   end
 end

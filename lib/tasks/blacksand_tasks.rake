@@ -19,12 +19,12 @@ namespace :blacksand do
     data = YAML.load_file(Rails.root.join("db/sites/#{site_id}.yml")).deep_symbolize_keys
 
     data[:templates].each do |template|
-      t = Blacksand::Template.where(name: template[:name]).first_or_initialize(path: template[:path])
+      t = Blacksand::Template.where(name: template[:name]).first_or_initialize(path: template[:path], options: template[:options])
       if t.new_record?
         puts "Create Template #{t.name}"
         t.save!
       else
-        t.update_attributes!(path: template[:path])
+        t.update_attributes!(path: template[:path], options: template[:options])
       end
     end
 
@@ -43,6 +43,7 @@ namespace :blacksand do
         puts "Create Prototype #{p.name}"
         p.save!
       else
+        p.update!(options: prototype_params[:options])
         # seed 一次换一次 fields, 但是之前关联 field 的地方都需要变
         prototype[:fields_attributes].each do |field|
           field_attributes = field.slice(:field_type, :description, :required, :options)

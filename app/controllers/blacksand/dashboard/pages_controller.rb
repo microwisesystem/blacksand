@@ -53,11 +53,23 @@ module Blacksand
       @page = Page.new
       if params["parent_id"].present?
         @parent_id = params[:parent_id]
+        parent_page = Page.find @parent_id
         @page.parent_id = params["parent_id"]
+
+        # Set default template
+        if parent_page.preferred_child_template_name
+          @page.template = Template.find_by(name: parent_page.preferred_child_template_name)
+        end
+
+        # Set default prototype
+        if parent_page.preferred_child_prototype_name
+          prototype = Prototype.find_by(name: parent_page.preferred_child_prototype_name)
+          @page.prototype = prototype
+          prototype.fields.each do |field|
+            Property.build_property(@page, field)
+          end
+        end
       end
-      # Prototype.first.fields.each do |field|
-      #   @page.properties.build(field: field)
-      # end
     end
 
     def edit
