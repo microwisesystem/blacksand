@@ -82,6 +82,13 @@ prototypes:
 - @page.content   # 页面内容
 - @page.props     # 页面自定义属性
 - @page.props.xxx # 获取页面 xxx 属性
+- @page.children  # 获取子页面集合
+- @page.positioned_children # 获取排序好的子页面集合
+- @page.child('page title') # 根据子页面标题获取子页面，返回 Page 实例
+- @page.child_with(key: value) # 根据条件查询某个字页面，返回 Page 实例
+- @page.ancestors  # 返回所有父级页面数组, 子上向下。
+- @page.descendents # 返回所有下级页面数据，深度优先遍历。
+- @page.all_image_srcs_of_content # 返回 content 中所有图片的链接地址
 
 如果字段的属性是 gallery 可以通过 file 获取对应图片. 如下
 
@@ -91,21 +98,13 @@ prototypes:
 end
 ```
 
-也可以通过页面标识('en_name')来获取 page, `page('museums')` .
+模板 helper 方法
 
-如何获取子页面
+- page('en_name')                   # 也可以通过页面标识('en_name')来获取 page, `page('museums')` .
+- set_page_options(some_key: value) # 设置页面参数，一般通过模板给layout传递参数
+- page_options[:some_key]           # 获取页面参数
+- textarea2html(text)               # 将文本中的空格转换为换行
 
-```
-# 产品:
-#   - 产品列表
-#   - 产品目录
-```
-
-```
-@page # 产品
-@page.positioned_children # 返回排好序的子页面
-@page.child('产品列表')    # 返回特定标题的子页面
-```
 
 __页面参数__
 
@@ -182,7 +181,7 @@ rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
 rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"
 ```
 
-## 认证和权限
+### 认证和权限
 
 
 #### 认证
