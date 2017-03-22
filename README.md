@@ -40,9 +40,15 @@ routes.rb
 templates:
 - name: 列表
   path: list/awesome
+  options:
+    preferred_child_template_name: xxx
+    preferred_child_prototype_name: xxx
 
 prototypes:
 - name: 新闻
+  options:
+    preferred_child_template_name: xxx
+    preferred_child_prototype_name: xxx
   fields_attributes:
   - name: date
     field_type: date
@@ -54,6 +60,32 @@ prototypes:
     options: ['行业新闻', '企业新闻']
     required: true
 ```
+
+templates 参数
+
+
+| key        | 描述           |  类型 | 必填  |
+| ------------- |---------------|---| ------|
+| name      | 模板名称 |string| true |
+| path      | 模板路径      |string|   true |
+| options   | 选项。      | hash |  false |
+| options.`preferred_child_template_name`  | 子页面默认模板. 如果页面的模板和原型都有配置，模板的优先机高于原型, 其他一样。 | string |  false |
+| options.`preferred_child_prototype_name`  | 子页面默认原型. | string |  false |
+
+prototype 参数
+
+| key        | 描述           |  类型 | 必填  |
+| -----------|---------------|-------|------|
+| name      | 原型名称 |string| true |
+| options   | 选项      | hash |  false |
+| options.`preferred_child_template_name`  | 子页面默认模板. 如果页面的模板和原型都有配置，模板的优先机高于原型, 其他一样。 | string |  false |
+| options.`preferred_child_prototype_name`  | 子页面默认原型   | string |  false |
+| fields_attributes      | 原型字段 |array. 元素为 field | true |
+| fields_attributes[i].name      | 字段名称, 全英文，用于获取属性值。 |string| true |
+| fields_attributes[i].field_type      | 字段类型 |string| true |
+| fields_attributes[i].description      | 字段描述 |string| true |
+| fields_attributes[i].required      | 是否必填，默认 false |string| false |
+
 
 `field_type` 目前支持 
 
