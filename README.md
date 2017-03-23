@@ -96,7 +96,7 @@ prototype 参数
 - rich_text 
 - image 
 - gallery 多张图片
-- slide 大图片
+- slide 大图片, **推荐使用 image**
 - file 文件
 - select
 - page 关联页面(Page)
