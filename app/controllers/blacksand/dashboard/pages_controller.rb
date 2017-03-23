@@ -41,7 +41,7 @@ module Blacksand
       @page = Page.where(id: params[:parent_id]).first
       @parent_id = params[:parent_id]
       @parent_page = Page.find(params[:parent_id]) if params[:parent_id]
-      @q = Page.where(parent_id: params[:parent_id]).order(:position, created_at: :desc).ransack(params[:q])
+      @q = Page.includes(:template, :prototype).where(parent_id: params[:parent_id]).order(:position, created_at: :desc).ransack(params[:q])
       @all_children = @q.result
       @pages = @all_children.page(params[:page])
     end
