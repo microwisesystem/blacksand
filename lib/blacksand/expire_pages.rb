@@ -8,7 +8,9 @@ module Blacksand
 
 
     def expire_cache_pages
-      expire_page root_path if defined? root_path
+      if defined? Rails.application.routes.url_helpers.root_path
+        expire_page Rails.application.routes.url_helpers.root_path
+      end
 
       # TODO: 有点暴力, 可以扫描缓存文件夹,挨个删除
       Blacksand::Page.find_each do |p|
