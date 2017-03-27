@@ -18,6 +18,9 @@ Blacksand.root_path = 'root path'
 
 # Blacksand.carrierwave_storage = :file
 # Blacksand.carrierwave_store_dir_prefix = 'uploads' # NOTICE: Kindeditor need config by their api
+
+# Page caching
+# Blacksand.page_caching = false
         RUBY
 
         rake 'railties:install:migrations'

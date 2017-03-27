@@ -14,6 +14,7 @@ require 'font-awesome-rails'
 require 'enumerize'
 require 'ransack'
 require 'themes_on_rails'
+require 'actionpack/page_caching'
 
 require 'rails-assets-util.css'
 require 'rails-assets-html5shiv'
@@ -27,6 +28,8 @@ require 'rails-assets-select2'
 
 require 'blacksand/routing'
 require 'blacksand/controller_helper'
+require 'blacksand/caching_pages'
+require 'blacksand/expire_pages'
 
 module Blacksand
 
@@ -52,6 +55,14 @@ module Blacksand
       # Storage be same with Our uploaders
       Kindeditor::AssetUploader.class_eval do
         storage Blacksand.carrierwave_storage
+      end
+    end
+
+    initializer "blacksand.page_caching", after: 'action_pack.page_caching' do |app|
+      if Blacksand.page_caching
+        BlacksandFront::PagesController.send(:include, CachingPages)
+        Blacksand::Dashboard::PagesController.send(:include, ExpirePages)
+        Blacksand::Dashboard::NavigationsController.send(:include, ExpirePages)
       end
     end
 

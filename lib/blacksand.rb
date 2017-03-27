@@ -19,8 +19,11 @@ module Blacksand
   mattr_accessor :carrierwave_storage
   mattr_accessor :carrierwave_store_dir_prefix
 
+  mattr_accessor :page_caching
+
   self.carrierwave_storage = :file
   self.carrierwave_store_dir_prefix = 'uploads'
+  self.page_caching = false
 
   def self.authenticate_with(&block)
     @authenticate = block if block
