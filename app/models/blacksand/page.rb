@@ -155,7 +155,7 @@ module Blacksand
 
       image_assets.each do |asset_name|
         asset = Kindeditor::Asset.where(asset: asset_name, owner_id: 0).first
-        asset.update(owner_id: self.id, owner_type: self.class.name)
+        asset.update(owner_id: self.id, owner_type: self.class.name) if asset.present?
       end
     end
 

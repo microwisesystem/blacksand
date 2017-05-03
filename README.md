@@ -173,6 +173,7 @@ Navigation 有这些属性
 文件存储, 使用自带的图片处理方式(如果是七牛存储自带的图片处理也能正常工作)。
 ```ruby
 Blacksand.carrierwave_storage = :file
+Blacksand.carrierwave_store_dir_prefix = 'uploads'
 
 Blacksand::ImageUploader.class_eval do
     version :thumb do
@@ -194,6 +195,7 @@ end
 
 ```ruby
 Blacksand.carrierwave_storage = :qiniu
+Blacksand.carrierwave_store_dir_prefix = 'another_path'
 
 Blacksand::ImageUploader.class_eval do
   qiniu_styles({
@@ -210,8 +212,15 @@ image.url('300xMIN')
 ```
 rake "carrierwave:from_file_to_qiniu[Blacksand::Property,image]"
 rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
-rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"
+
+# kindeditor 不能使用此命令, kindeditor 动态生成文件名, 建议使用 qshell 进行批量迁移
+# ~~rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"~~
 ```
+
+注意：2.0 版本以后 Kindeditor 的 storage 和 Blacksand 是一直的，但是 'carrierwave_store_dir_prefix' 只针对 Blacksand。 
+Kindeditor 需要单独配置 `upload_dir` 详见 Kindeditor 的[配置](https://github.com/Macrow/rails_kindeditor#上传图片及文件配置),
+如果 `upload_dir` 变化那么 Blacksand::Page 的 content 内容里的 img src 也需要替换。
+
 
 ### 认证和权限
 
