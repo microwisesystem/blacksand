@@ -36,14 +36,9 @@ module Blacksand
   class Engine < ::Rails::Engine
     isolate_namespace Blacksand
 
+    # USING: rake blacksand_engine:install:migrations
+
     initializer "blacksand.precompile", group: :all do |app|
-
-      # USING: rake blacksand_engine:install:migrations
-      #
-      # config.paths["db/migrate"].expanded.each do |expanded_path|
-      #   app.config.paths["db/migrate"] << expanded_path
-      # end
-
       app.config.assets.precompile += %w(
         blacksand/dashboard.js
         blacksand/dashboard.css
