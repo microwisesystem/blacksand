@@ -3,6 +3,7 @@
 这是一个独立 Rails engine, 提供了门户核心的功能, 管理页面和页面显示.
 
 
+![screenshot](https://raw.githubusercontent.com/microwisesystem/blacksand/master/screenshot.jpg)
 
 ### 安装
 
