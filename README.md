@@ -2,7 +2,6 @@
 
 这是一个独立 Rails engine, 提供了门户核心的功能, 管理页面和页面显示.
 
-管理页面在 `/dashboard` 下面.
 
 
 ### 安装
@@ -16,10 +15,14 @@ Gemfile
     rails g blacksand:install
     rake db:migrate
     
-routes.rb
+routes.rb 添加下面两行
 
-    mount Blacksand::Engine => '/cms'
-    blacksand
+```ruby
+# 管理后台地址 /cms
+mount Blacksand::Engine => '/cms'
+
+blacksand
+```
     
 更新数据库迁移脚本
 
@@ -72,7 +75,7 @@ templates 参数
 | options.`preferred_child_template_name`  | 子页面默认模板. 如果页面的模板和原型都有配置，模板的优先机高于原型, 其他一样。 | string |  false |
 | options.`preferred_child_prototype_name`  | 子页面默认原型. | string |  false |
 
-prototype 参数
+prototypes 参数
 
 | key        | 描述           |  类型 | 必填  |
 | -----------|---------------|-------|------|
@@ -108,7 +111,7 @@ prototype 参数
 
 #### 模板页面
 
-出过首页详情页都会有 `@page` 变量, 变量有这些属性。
+除过首页，详情页都会有 `@page` 变量, 变量有这些属性。
 
 - @page.title     # 页面标题
 - @page.content   # 页面内容
@@ -118,13 +121,13 @@ prototype 参数
 - @page.positioned_children # 获取排序好的子页面集合
 - @page.child('page title') # 根据子页面标题获取子页面，返回 Page 实例
 - @page.child_with(key: value) # 根据条件查询某个字页面，返回 Page 实例
-- @page.ancestors  # 返回所有父级页面数组, 子上向下。
+- @page.ancestors  # 返回所有父级页面数组, 自上向下。
 - @page.descendents # 返回所有下级页面数据，深度优先遍历。
 - @page.all_image_srcs_of_content # 返回 content 中所有图片的链接地址
 
 如果字段的属性是 gallery 可以通过 file 获取对应图片. 如下
 
-```
+```ruby
 @page.props.my_gallery.each do |picture| 
   picutre.file   # image_tag(picutre.file), image_path(picutre.file)
 end
