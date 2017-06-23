@@ -9,13 +9,13 @@
 
 Gemfile
 
-    gem 'blacksand', git: 'git@gitlab.com/microwise/blacksand.git'
+    gem 'blacksand', git: 'git@github.com:microwisesystem/blacksand.gitt'
 
 执行
 
     rails g blacksand:install
     rake db:migrate
-    
+
 routes.rb 添加下面两行
 
 ```ruby
@@ -24,7 +24,7 @@ mount Blacksand::Engine => '/cms'
 
 blacksand
 ```
-    
+
 更新数据库迁移脚本
 
     rake blacksand:install:migrations
@@ -91,14 +91,14 @@ prototypes 参数
 | fields_attributes[i].required      | 是否必填，默认 false |string| false |
 
 
-`field_type` 目前支持 
+`field_type` 目前支持
 
-- date 
-- number 
-- string 
-- textarea 
-- rich_text 
-- image 
+- date
+- number
+- string
+- textarea
+- rich_text
+- image
 - gallery 多张图片
 - slide 大图片, **推荐使用 image**
 - file 文件
@@ -129,7 +129,7 @@ prototypes 参数
 如果字段的属性是 gallery 可以通过 file 获取对应图片. 如下
 
 ```ruby
-@page.props.my_gallery.each do |picture| 
+@page.props.my_gallery.each do |picture|
   picutre.file   # image_tag(picutre.file), image_path(picutre.file)
 end
 ```
@@ -221,7 +221,7 @@ rake "carrierwave:from_file_to_qiniu[Blacksand::Picture,file]"
 # ~~rake "carrierwave:from_file_to_qiniu[Kindeditor::Asset,asset]"~~
 ```
 
-注意：2.0 版本以后 Kindeditor 的 storage 和 Blacksand 是一直的，但是 'carrierwave_store_dir_prefix' 只针对 Blacksand。 
+注意：2.0 版本以后 Kindeditor 的 storage 和 Blacksand 是一直的，但是 'carrierwave_store_dir_prefix' 只针对 Blacksand。
 Kindeditor 需要单独配置 `upload_dir` 详见 Kindeditor 的[配置](https://github.com/Macrow/rails_kindeditor#上传图片及文件配置),
 如果 `upload_dir` 变化那么 Blacksand::Page 的 content 内容里的 img src 也需要替换。
 
@@ -240,7 +240,7 @@ Kindeditor 需要单独配置 `upload_dir` 详见 Kindeditor 的[配置](https:/
 Blacksand.authenticate_with do
   # Devise
   authenticate_user!
-  
+
   # HTTP basic auth
   # authenticate_or_request_with_http_basic do |u, p|
   #   u == 'admin' && p == 'password'
