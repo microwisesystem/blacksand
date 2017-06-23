@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Blacksand::VERSION
   s.authors     = ["bastengao"]
   s.email       = ["bastengao@gmail.com"]
-  s.homepage    = "http://gitlab.com/microwise/blacksand"
+  s.homepage    = "https://github.com/microwisesystem/blacksand"
   s.summary     = "Summary of Blacksand."
   s.description = "Description of Blacksand."
   s.license     = "MIT"

@@ -9,7 +9,7 @@
 
 Gemfile
 
-    gem 'blacksand', git: 'git@github.com:microwisesystem/blacksand.gitt'
+    gem 'blacksand', git: 'git@github.com:microwisesystem/blacksand.git'
 
 执行
 
