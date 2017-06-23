@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["bastengao"]
   s.email       = ["bastengao@gmail.com"]
   s.homepage    = "https://github.com/microwisesystem/blacksand"
-  s.summary     = "Summary of Blacksand."
-  s.description = "Description of Blacksand."
+  s.summary     = "CMS base on Rails Engine."
+  s.description = "CMS base on Rails Engin."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
