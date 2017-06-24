@@ -37,7 +37,7 @@ NOTE: 目前数据库只支持 Postgresql，正在去除数据库耦合。
 
 0. 创建站点
 
-    # 创建一个新的站点
+
     rails g blacksand:new_site demo
 
 会生成 `app/themes/demo/` 和 `db/sites/demo.yml`, 目录结构如下。
