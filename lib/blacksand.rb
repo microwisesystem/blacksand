@@ -14,6 +14,8 @@ module Blacksand
 
   mattr_accessor :site_id
   mattr_accessor :site_name
+
+  # DEPRECATED: to be deleted
   mattr_accessor :root_path
 
   mattr_accessor :carrierwave_storage

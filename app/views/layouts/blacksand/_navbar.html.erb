@@ -21,7 +21,9 @@
         <% if false && can?(:create, User) %>
           <li><a href="<%= users_path %>">用户</a></li>
         <% end %>
-        <li><a href="<%= main_app.root_path %>">回首页<span class="sr-only">(current)</span></a></li>
+        <% if main_app.methods.include?(:root_path) %>
+            <li><a href="<%= main_app.root_path %>">回首页<span class="sr-only">(current)</span></a></li>
+        <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

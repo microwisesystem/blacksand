@@ -8,7 +8,6 @@ module Blacksand
         create_file("config/initializers/blacksand.rb", <<-RUBY)
 Blacksand.site_id   = 'site id'
 Blacksand.site_name = 'site name'
-Blacksand.root_path = 'root path'
 
 # Setup authentication to be run as a before filter 
 # @example Devise admin
