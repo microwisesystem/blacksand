@@ -30,7 +30,7 @@ zh-CN:
         prototype: 原型
       blacksand/page:
         title: 标题
-        en_name: 英文名
+        en_name: 标识
         content: 内容
         parent: 父页面
         template: 模板
