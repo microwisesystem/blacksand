@@ -5,7 +5,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/microwisesystem/blacksand/master/screenshot.gif)
 
-### 安装
+## 安装
 
 Gemfile
 
@@ -33,7 +33,7 @@ blacksand
     
 NOTE: 目前数据库只支持 Postgresql，正在去除数据库耦合。
 
-### 示例
+## 示例
 
 0. 创建站点
 
@@ -133,6 +133,7 @@ rake "blacksand:seed[demo]"
 
 进入 http://127.0.0.1:3000/cms , 点击"添加页面" 就可以添加新闻，然后预览看效果了。
 
+## 文档
 
 ### templates 参数
 
@@ -215,7 +216,7 @@ __页面参数__
 
 模板有时候需要给 layout 或者  partial 传递一些参数, 就可以通过 `set_page_options title: 'IamTitle'`, 然后可以通过 `page_options[:title]` 获取。
 
-#### 导航
+### 导航
 
 除过首页, page 页面 __默认__ 都会有 `@navigations` 变量可以在页面访问。`@navigations` 包括当前所有的导航,并且是排好序的。
 
@@ -295,10 +296,10 @@ Kindeditor 需要单独配置 `upload_dir` 详见 Kindeditor 的[配置](https:/
 如果 `upload_dir` 变化那么 Blacksand::Page 的 content 内容里的 img src 也需要替换。
 
 
-### 认证和权限
+## 认证和权限
 
 
-#### 认证
+### 认证
 
 认证可以使用 Devise 或者自定义。
 
@@ -317,7 +318,7 @@ Blacksand.authenticate_with do
 end
 ```
 
-#### 授权
+### 授权
 
 授权目前只支持 cancancan.
 
