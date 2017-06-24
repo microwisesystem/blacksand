@@ -3,12 +3,14 @@
 这是一个独立 Rails engine, 提供了门户核心的功能, 管理页面和页面显示.
 
 
-![screenshot](https://raw.githubusercontent.com/microwisesystem/blacksand/master/screenshot.jpg)
+![screenshot](https://raw.githubusercontent.com/microwisesystem/blacksand/master/screenshot.gif)
 
 ### 安装
 
 Gemfile
 
+    source "https://rails-assets.org"
+    ...
     gem 'blacksand'
 
 执行
@@ -28,44 +30,111 @@ blacksand
 更新数据库迁移脚本
 
     rake blacksand:install:migrations
+    
+NOTE: 目前数据库只支持 Postgresql，正在去除数据库耦合。
 
 ### 示例
+
+0. 创建站点
 
     # 创建一个新的站点
     rails g blacksand:new_site demo
 
-会生成 `app/themes/demo/` 文件夹。
+会生成 `app/themes/demo/` 和 `db/sites/demo.yml`, 目录结构如下。
 
-还有站点对应的模板和原型文件, `db/sites/demo.yml`。
+```
+app/
+  themes/
+    demo/
+      assets/
+      locals/
+      views/
 
-#### 编辑模板和原型
+db/
+  sites/
+    demo.yml
+```
+
+同时修改 `config/initializers/blacksand.rb`
+
+```
+Blacksand.site_id = 'deomo'
+```
+      
+
+1. 编辑模板和原型
+
+打开 db/sites/demo.yml, 编辑模板和原型，添加两个模板 "新闻列表" 和 "新闻详情"，还有一个 "新闻原型"。
 
 ```yml
 templates:
-- name: 列表
-  path: list/awesome
+- name: 新闻列表
+  path: news/index
   options:
-    preferred_child_template_name: xxx
-    preferred_child_prototype_name: xxx
+    preferred_child_template_name: 新闻详情
+    preferred_child_prototype_name: 新闻
+- name: 新闻详情
+  path: news/show
 
 prototypes:
 - name: 新闻
-  options:
-    preferred_child_template_name: xxx
-    preferred_child_prototype_name: xxx
   fields_attributes:
-  - name: date
+  - name: published_at
     field_type: date
     description: 发布时间
     required: true
-  - name: type
-    field_type: select
-    description: 发布时间
-    options: ['行业新闻', '企业新闻']
+  - name: editor
+    field_type: string
+    description: 编辑
     required: true
 ```
 
-templates 参数
+2. 导入模板和原型
+
+```
+rake "blacksand:seed[demo]"
+```
+
+将模板和原型导入到数据库, 模板和原型有任何修改后可重复执行导入。如果 yml 中模板和原型被删除，数据库中多出的模板和原型也会被删除。
+
+3. 添加模板页面
+
+
+添加新闻列表 `app/themes/demo/views/news/index.html.erb`
+
+```erb
+<h1>新闻列表</h1>
+<ul>
+  <% @page.children.each do |child_page| %>
+    <li>
+      <%= link_to child_page.title, page_path(child_page) %>
+    </li>
+  <% end %>
+</ul>
+```
+
+添加新闻详情 `app/themes/demo/views/news/show.html.erb`
+
+```erb
+<h1><%= @page.title %></h1>
+<p>
+  发布时间: <%= @page.props.published_at %> 
+  编辑: <%= @page.props.editor %>
+</p>
+
+
+<!-- 新闻内容 -->
+<p>
+  <%= @page.content.html_safe %>
+</p>
+```
+
+4. 进入管理后台添加内容
+
+进入 http://127.0.0.1:3000/cms , 点击"添加页面" 就可以添加新闻，然后预览看效果了。
+
+
+### templates 参数
 
 
 | key        | 描述           |  类型 | 必填  |
@@ -76,7 +145,7 @@ templates 参数
 | options.`preferred_child_template_name`  | 子页面默认模板. 如果页面的模板和原型都有配置，模板的优先机高于原型, 其他一样。 | string |  false |
 | options.`preferred_child_prototype_name`  | 子页面默认原型. | string |  false |
 
-prototypes 参数
+### prototypes 参数
 
 | key        | 描述           |  类型 | 必填  |
 | -----------|---------------|-------|------|
@@ -110,7 +179,7 @@ prototypes 参数
 
 `rake "blacksand:seed[demo]"`
 
-#### 模板页面
+### 模板页面
 
 除过首页，详情页都会有 `@page` 变量, 变量有这些属性。
 
@@ -168,7 +237,7 @@ Navigation 有这些属性
     * 'hover_submenus'
     * 'link_sub_page'
 
-#### 图片样式
+### 图片样式
 
 文件上传使用的是 carrierwave, 目前集成了两种处理方式一直种是 carrierwave 自带的图片处理，另一种是借助七牛的图片处理。
 
