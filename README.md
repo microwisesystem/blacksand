@@ -133,6 +133,50 @@ rake "blacksand:seed[demo]"
 
 进入 http://127.0.0.1:3000/cms , 点击"添加页面" 就可以添加新闻，然后预览看效果了。
 
+5. 添加首页
+
+blacksand 后台可以添加各式各样的页面，唯独首页需要单独开发。
+
+生成 WelcomeController
+
+```
+rails g controller welcome index
+```
+
+编辑 welcome_controller.rb, 添加 `blacksand`
+
+```ruby
+class WelcomeController < ApplicationController
+  blacksand
+
+  def index
+  end
+end
+
+```
+
+编辑路由 routes.rb，添加下面这行
+
+```
+root 'welcome#index'
+```
+
+最后编辑 welcome/index.html.erb。
+
+```erb
+<h1><%= page("news").title %></h1>
+<ul>
+  <% page("news").children.each do |child_page| %>
+    <li>
+      <%= link_to child_page.title, page_path(child_page) %>
+    </li>
+  <% end %>
+</ul>
+```
+
+上面模板中 "news" 是新闻列表页面的 "标识" 必须是全局唯一的，
+这样可以通过 `page("news")` 模板函数来获取 Page 实例，从而获取页面相关的属性，例如标题和子页面等。
+
 ## 文档
 
 ### templates 参数
@@ -182,19 +226,19 @@ rake "blacksand:seed[demo]"
 
 ### 模板页面
 
-除过首页，详情页都会有 `@page` 变量, 变量有这些属性。
+除过首页，详情页都会有 `@page` 变量, 其实是 Page 实例， 他有这些属性。
 
-- @page.title     # 页面标题
-- @page.content   # 页面内容
-- @page.props     # 页面自定义属性
-- @page.props.xxx # 获取页面 xxx 属性
-- @page.children  # 获取子页面集合
-- @page.positioned_children # 获取排序好的子页面集合
-- @page.child('page title') # 根据子页面标题获取子页面，返回 Page 实例
-- @page.child_with(key: value) # 根据条件查询某个字页面，返回 Page 实例
-- @page.ancestors  # 返回所有父级页面数组, 自上向下。
-- @page.descendents # 返回所有下级页面数据，深度优先遍历。
-- @page.all_image_srcs_of_content # 返回 content 中所有图片的链接地址
+- page.title     # 页面标题
+- page.content   # 页面内容
+- page.props     # 页面自定义属性
+- page.props.xxx # 获取页面 xxx 属性
+- page.children  # 获取子页面集合
+- page.positioned_children # 获取排序好的子页面集合
+- page.child('page title') # 根据子页面标题获取子页面，返回 Page 实例
+- page.child_with(key: value) # 根据条件查询某个字页面，返回 Page 实例
+- page.ancestors  # 返回所有父级页面数组, 自上向下。
+- page.descendents # 返回所有下级页面数据，深度优先遍历。
+- page.all_image_srcs_of_content # 返回 content 中所有图片的链接地址
 
 如果字段的属性是 gallery 可以通过 file 获取对应图片. 如下
 
