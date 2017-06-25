@@ -31,8 +31,6 @@ blacksand
 
     rake blacksand:install:migrations
     
-NOTE: 目前数据库只支持 Postgresql，正在去除数据库耦合。
-
 ## 示例
 
 0. 创建站点
