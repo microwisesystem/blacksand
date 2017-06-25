@@ -9,6 +9,7 @@ module Blacksand
     validates :options, presence: true, if: 'select?'
 
     enumerize :field_type, in: %w{date number string textarea rich_text image gallery array slide file select page}
+    serialize :options, JSON
 
     default_scope { order(:id) }
 

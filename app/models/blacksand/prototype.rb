@@ -1,5 +1,6 @@
 module Blacksand
   class Prototype < ActiveRecord::Base
+    serialize :options, JSON
     store_accessor :options,  :preferred_child_template_name, :preferred_child_prototype_name
 
     has_many :fields, dependent: :destroy

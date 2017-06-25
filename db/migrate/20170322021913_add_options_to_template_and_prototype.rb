@@ -1,6 +1,6 @@
 class AddOptionsToTemplateAndPrototype < ActiveRecord::Migration
   def change
-    add_column :templates, :options, :json
-    add_column :prototypes, :options, :json
+    add_column :templates, :options, :string
+    add_column :prototypes, :options, :string
   end
 end

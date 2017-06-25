@@ -5,7 +5,7 @@ class CreateNavigations < ActiveRecord::Migration
       t.string :url
       t.integer :position, default: 0
       t.references :page, index: true, foreign_key: true
-      t.json :options
+      t.string :options
 
       t.timestamps null: false
     end

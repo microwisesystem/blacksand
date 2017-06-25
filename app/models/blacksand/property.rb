@@ -8,6 +8,7 @@ module Blacksand
     # ref: https://github.com/carrierwaveuploader/carrierwave/issues/1545
     #
     # mount_uploaders :gallery, ImageUploader
+    serialize :gallery, JSON
 
     belongs_to :page
     belongs_to :field

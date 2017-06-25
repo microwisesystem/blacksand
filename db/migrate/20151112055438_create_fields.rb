@@ -5,7 +5,7 @@ class CreateFields < ActiveRecord::Migration
       t.string :description
       t.string :field_type
       t.references :prototype, index: true, foreign_key: true
-      t.json :options
+      t.string :options
       t.boolean :required, :default => false
 
       t.timestamps null: false
