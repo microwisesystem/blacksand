@@ -1,7 +1,7 @@
 require 'rails'
 require 'carrierwave'
-require 'carrierwave-qiniu'
 require 'rails_kindeditor'
+# TODO: may be optional
 require 'mini_magick'
 require 'kaminari'
 require 'bootstrap-kaminari-views'

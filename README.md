@@ -242,6 +242,8 @@ Navigation 有这些属性
 
 文件上传使用的是 carrierwave, 目前集成了两种处理方式一直种是 carrierwave 自带的图片处理，另一种是借助七牛的图片处理。
 
+carrierwave 配置需要手动在项目 config/initializers/ 添加配置文件，具体看 [carrierwave 配置](https://github.com/carrierwaveuploader/carrierwave#configuring-carrierwave)
+
 使用方法如下：
 
 文件存储, 使用自带的图片处理方式(如果是七牛存储自带的图片处理也能正常工作)。
@@ -266,6 +268,8 @@ end
 ```
 
 七牛存储，使用七牛的图片处理(参考 http://developer.qiniu.com/code/v6/api/kodo-api/image/index.html)。
+
+Gemfile 文件添加 `gem "carrierwave-qiniu"`, 然后具体配置看 [carrierwave-qiniu](https://github.com/huobazi/carrierwave-qiniu) 官方文档
 
 ```ruby
 Blacksand.carrierwave_storage = :qiniu
