@@ -11,7 +11,7 @@ Gemfile
 
     source "https://rails-assets.org"
     ...
-    gem 'blacksand'
+    gem 'blacksand', github: 'microwisesystem/blacksand', branch: 'v2.4.1'
 
 执行
 
@@ -30,7 +30,7 @@ blacksand
 更新数据库迁移脚本
 
     rake blacksand:install:migrations
-    
+
 ## 示例
 
 0. 创建站点
@@ -58,7 +58,7 @@ db/
 ```
 Blacksand.site_id = 'deomo'
 ```
-      
+
 
 1. 编辑模板和原型
 
@@ -116,7 +116,7 @@ rake "blacksand:seed[demo]"
 ```erb
 <h1><%= @page.title %></h1>
 <p>
-  发布时间: <%= @page.props.published_at %> 
+  发布时间: <%= @page.props.published_at %>
   编辑: <%= @page.props.editor %>
 </p>
 
