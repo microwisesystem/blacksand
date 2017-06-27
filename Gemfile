@@ -1,10 +1,22 @@
 source 'https://rubygems.org'
-source "https://rails-assets.org"
 
 # Declare your gem's dependencies in blacksand.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
+
+# https://github.com/bundler/bundler/issues/3576
+source "https://rails-assets.org" do
+  gem 'rails-assets-util.css'
+  gem 'rails-assets-html5shiv'
+  gem 'rails-assets-respond'
+  gem 'rails-assets-bootstrap-datepicker'
+  gem 'rails-assets-headroom.js'
+  gem 'rails-assets-dragula'
+  gem 'rails-assets-bootstrap-treeview'
+  gem 'rails-assets-multiselect'
+  gem 'rails-assets-select2'
+end
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
