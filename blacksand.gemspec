@@ -16,7 +16,9 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_dependency "rails", ">= 4.2.6", '< 5.1'
+  s.add_dependency "thor"
+  s.add_dependency "rails", ">= 4.2.6", '< 5.2'
+  s.add_dependency "jquery-rails"
   s.add_dependency "actionpack-page_caching"
   s.add_dependency "carrierwave"
   s.add_dependency "kaminari"
