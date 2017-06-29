@@ -1,6 +1,6 @@
 # Blacksand - 黑石是由黑沙组成的
 
-这是一个独立 Rails engine, 提供了门户核心的功能, 管理页面和页面显示.
+这是一个独立 Rails engine, 提供了门户核心的功能, 管理页面和页面显示. 目前支持 Rails 4.2、5.0 和 5.1。
 
 
 ![screenshot](https://raw.githubusercontent.com/microwisesystem/blacksand/master/screenshot.gif)
@@ -11,7 +11,7 @@ Gemfile
 
     source "https://rails-assets.org"
     ...
-    gem 'blacksand', github: 'microwisesystem/blacksand', branch: 'v2.4.1'
+    gem 'blacksand', github: 'microwisesystem/blacksand', branch: 'v2.5.0'
 
 执行
 
@@ -27,9 +27,9 @@ mount Blacksand::Engine => '/cms'
 blacksand
 ```
 
-更新数据库迁移脚本
+如果数据库迁移脚本有修改，可以执行下面命令更新数据库迁移脚本
 
-    rake blacksand:install:migrations
+    rake blacksand:update_migrations
 
 ## 示例
 
