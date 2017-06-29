@@ -2,12 +2,12 @@ require 'uri'
 
 module Blacksand
   class Page < ActiveRecord::Base
-    belongs_to :parent, class_name: Page, foreign_key: 'parent_id'
+    belongs_to :parent, class_name: Page, foreign_key: 'parent_id', required: false
     has_many :children, class_name: Page, foreign_key: 'parent_id', :dependent => :destroy
     has_one :navigation, :dependent => :destroy
 
-    belongs_to :template
-    belongs_to :prototype
+    belongs_to :template, required: false
+    belongs_to :prototype, required: false
 
     has_many :properties, :dependent => :destroy
     has_many_kindeditor_assets :attachments, :dependent => :destroy

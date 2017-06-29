@@ -1,6 +1,6 @@
 module Blacksand
   class Navigation < ActiveRecord::Base
-    belongs_to :page
+    belongs_to :page, required: false
 
     # ActiveRecord attribute api changed, see http://api.rubyonrails.org/classes/ActiveRecord/Attributes/ClassMethods.html#method-i-attribute
     if ActiveRecord::VERSION::MAJOR >= 5
