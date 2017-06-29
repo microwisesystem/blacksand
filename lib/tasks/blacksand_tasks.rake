@@ -1,7 +1,4 @@
-# desc "Explaining what the task does"
-# task :blacksand do
-#   # Task goes here
-# end
+require 'blacksand/migrations'
 
 namespace :blacksand do
   desc "Clean unsued kindeditor assets"
@@ -68,5 +65,11 @@ namespace :blacksand do
       puts "Delete prototype: #{p.name}"
       p.destroy!
     end
+  end
+
+  desc "update migrations"
+  task :update_migrations do
+    Rake::Task["blacksand:install:migrations"].invoke
+    Blacksand::Migrations.new.fix_migration_super_class
   end
 end
